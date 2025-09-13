@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Simulador de Plano de Pagamento</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -677,27 +677,27 @@
              }
              /* Ajustes para telas menores para o top-button-container */
              .top-button-container {
-                 flex-direction: column; /* Coloca os itens em coluna para mobile */
-                 gap: 10px; /* Espaço entre os botões */
-                 align-items: center; /* Centraliza os itens na coluna */
-                 justify-content: center; /* Centraliza verticalmente (não essencial aqui) */
-                 flex-wrap: nowrap; /* Impede que os itens quebrem linha, já que estão em coluna */
+                 flex-direction: row; /* Manter os botões lado a lado */
+                 gap: 5px; /* Reduzir o espaço entre os botões em mobile, se necessário */
+                 justify-content: space-around; /* Distribuir espaço entre os botões */
+                 flex-wrap: wrap; /* Permitir que os botões quebrem linha em telas muito estreitas */
              }
               .top-button-container .btn {
-                  width: 100%; /* Botões ocupam a largura total em mobile */
-                  margin-bottom: 0; /* Remove margem inferior padrão dos botões aqui */
-                  padding: 10px 12px; /* Ajusta padding para botões em mobile */
+                  width: auto; /* Permitir que a largura se ajuste ao conteúdo */
+                  margin-bottom: 0; /* Garantir que não haja margem inferior desnecessária */
+                  padding: 8px 10px; /* Ajustar padding para botões em mobile se necessário */
               }
-              .btn-auto-width {
-                  width: 100% !important; /* Força a largura total para botões auto-width */
+              .btn-auto-width { /* Manter a largura automática para os botões marcados */
+                  width: auto !important;
               }
+               /* Ajuste padding para botões somente com ícone em mobile - já estava ok, podemos manter ou ajustar */
               .top-button-container .btn-auto-width:not(:has(.btn-text)) {
-                  padding: 10px; /* Ajusta padding para botões só com ícone em mobile */
-                  width: 100% !important;
+                  padding: 8px; /* Ajustar padding para botões só com ícone em mobile */
+                  width: auto !important;
               }
-               /* Ajustar o margin-right: auto para o botão de Leads para ele continuar na esquerda (mas agora em coluna) */
+               /* Ajustar o margin-right: auto para o botão de Leads para ele continuar na esquerda */
               .top-button-container #btnAbrirListaLeads {
-                  margin-right: 0; /* Remove o margin-right: auto, pois agora ele estará centralizado na coluna */
+                  margin-right: auto;
               }
 
               /* Botões no modal de documentos em telas menores */
@@ -705,14 +705,6 @@
                  flex-direction: column; /* Empilha os botões */
                  gap: 8px; /* Reduz o espaçamento */
              }
-
-             /* Mobile adjustments for top-links */
-            .top-links {
-                padding: 0 5px; /* Reduz o padding em telas menores */
-            }
-            .top-links .contribution-message {
-                font-size: 0.85rem; /* Fonte um pouco menor em mobile */
-            }
         }
 
         @media (min-width: 768px) {
@@ -736,16 +728,12 @@
             }
              /* Mantém o layout horizontal para telas maiores */
             .top-button-container {
-                flex-direction: row; /* Volta a ser linha para desktop */
+                flex-direction: row;
                 align-items: center;
                 gap: 10px; /* Manter o gap horizontal */
-                justify-content: flex-end; /* Volta a alinhar à direita */
-            }
-            .top-button-container #btnAbrirListaLeads {
-                margin-right: auto; /* Volta a empurrar para a esquerda em desktop */
             }
             .top-button-container .btn-auto-width {
-                 width: auto; /* Botões com largura automática em desktop */
+                 width: auto; /* Botões com largura automática */
             }
              /* Ajuste padding para botões somente com ícone em desktop */
              .top-button-container .btn-auto-width:not(:has(.btn-text)) {
@@ -792,76 +780,10 @@
 
         .top-links {
             display: flex;
-            flex-direction: column; /* Alinha itens verticalmente */
-            align-items: center;    /* Centraliza horizontalmente */
+            justify-content: flex-end; /* Alterado para flex-end para alinhar qualquer coisa que sobre aqui à direita */
+            align-items: center;
             margin-bottom: 20px;
             padding: 0 10px;
-            text-align: center; /* Centraliza o texto */
-        }
-
-        .top-links .contribution-message {
-            font-size: 0.9rem;
-            color: var(--grey-detail);
-            margin-bottom: 10px; /* Espaço entre a mensagem e o QR Code */
-            max-width: 90%; /* Limita a largura para melhor leitura em telas grandes */
-        }
-
-        /* Novo estilo para o botão do PIX */
-        .btn-pix {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            font-size: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            text-decoration: none;
-            width: auto;
-            flex-shrink: 0;
-            background-color: var(--dark-detail);
-            color: var(--light-text);
-            position: relative;
-            overflow: hidden;
-            flex-direction: column; /* Alinha o texto PIX e o CNPJ verticalmente */
-            gap: 5px; /* Espaçamento entre PIX e CNPJ */
-            line-height: 1.1; /* Reduz espaçamento da linha */
-        }
-
-        .btn-pix:hover {
-            background-color: #444;
-            transform: translateY(-1px);
-        }
-
-        .btn-pix .pix-title {
-            font-size: 1rem; /* Tamanho do "PIX" */
-            font-weight: 700; /* Negrito para "PIX" */
-            color: var(--gold-light); /* Cor para destacar "PIX" */
-        }
-
-        .btn-pix span.cnpj-text {
-            font-size: 0.75rem; /* Tamanho da fonte para o CNPJ */
-            font-weight: 600; /* Deixa o CNPJ em negrito */
-            color: var(--gold-light); /* Cor para destacar o CNPJ */
-            white-space: nowrap; /* Evita que o CNPJ quebre linha */
-        }
-
-        /* Mobile adjustments for btn-pix */
-        @media (max-width: 768px) {
-             .top-button-container .btn-pix {
-                 padding: 8px; /* Ajusta padding para botões em mobile */
-                 gap: 3px; /* Reduz o espaçamento em mobile */
-                 width: 100%; /* PIX ocupa 100% da largura em mobile */
-             }
-             .btn-pix .pix-title {
-                 font-size: 0.9rem; /* "PIX" um pouco menor em mobile */
-             }
-             .btn-pix span.cnpj-text {
-                 font-size: 0.7rem; /* CNPJ menor em mobile */
-             }
         }
 
 
@@ -1561,8 +1483,7 @@
 <body>
     <div class="container">
         <div class="top-links">
-            <p class="contribution-message">O sistema não é cobrado, mas contribua com o que pode somente para manter a hospedagem em nuvem.</p>
-        </div>
+            </div>
 
 
         <div class="card" id="simuladorCard">
@@ -1590,10 +1511,6 @@
                  <button id="btnImprimirSimulacao" class="btn btn-secondary btn-auto-width" title="Imprimir Simulação">
                     <i class="fas fa-print"></i>
                 </button>
-                <a href="https://wa.me/5582996622036?text=Olá! Gostaria de saber mais sobre a contribuição via PIX para o sistema." target="_blank" class="btn-pix" title="Contribua via PIX">
-                    <span class="pix-title">PIX</span>
-                    <span class="cnpj-text">CNPJ 31.632.000/0001-38</span>
-                </a>
             </div>
 
             <div class="form-group" id="form-group-nomeEmpreendimento">
@@ -1843,11 +1760,11 @@
                 <div class="editable-header-info">
                     <div class="form-group">
                         <label for="imobiliariaNome">Nome da Imobiliária</label>
-                        <input type="text" id="imobiliariaNome" class="form-control" placeholder="Ex: Cunha Imobiliária">
+                        <input type="text" id="imobiliariaNome" class="form-control" placeholder="Ex: Imobiliária">
                     </div>
                     <div class="form-group">
                         <label for="corretorNome">Nome do Corretor</label>
-                        <input type="text" id="corretorNome" class="form-control" placeholder="Ex: Alex Peixoto">
+                        <input type="text" id="corretorNome" class="form-control" placeholder="Ex: Corretor">
                     </div>
                     <div class="form-group">
                         <label for="corretorCreci">CRECI do Corretor</label>
@@ -1856,8 +1773,8 @@
                 </div>
 
                 <div class="document-header-info" id="pdfHeaderInfo">
-                    <h2 style="color: #333; text-align: center; margin-bottom: 10px; font-size: 1.5rem;">CUNHA IMOBILIÁRIA</h2>
-                    <p style="text-align: center; color: #555; font-size: 0.9rem; margin-bottom: 20px;">ALEX PEIXOTO - CRECI/AL 5794</p>
+                    <h2 style="color: #333; text-align: center; margin-bottom: 10px; font-size: 1.5rem;"></h2>
+                    <p style="text-align: center; color: #555; font-size: 0.9rem; margin-bottom: 20px;"> -</p>
                 </div>
 
                 <div class="document-section">
@@ -2446,11 +2363,9 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                 if (value.length > 5) {
                     if (value.length <= 14 && value.charAt(5) === '9' && value.length > 6) {
                          value = value.replace(/(\(\d{2}\)\s\d{5})(\d{0,4})/, '$1-$2');
-                    }
-                    else if (value.length <=14 && value.charAt(5) !== '9' && value.length > 5){
+                    } else if (value.length <=14 && value.charAt(5) !== '9' && value.length > 5){
                          value = value.replace(/(\(\d{2}\)\s\d{4})(\d{0,4})/, '$1-$2');
-                    }
-                    else if (value.length === 15 && value.charAt(5) === '9') {
+                    } else if (value.length === 15 && value.charAt(5) === '9') {
                         value = value.replace(/(\(\d{2}\)\s\d{5})(\d{4})/, '$1-$2');
                     } else if (value.length === 14 && value.charAt(5) !== '9') {
                         value = value.replace(/(\(\d{2}\)\s\d{4})(\d{4})/, '$1-$2');
@@ -3267,7 +3182,7 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
 
         // Função para remover balões e confetes do contêiner
         function clearPartyElements() {
-            // Mantém o #partyMessage, remove apenas os elementos generados dinamicamente
+            // Mantém o #partyMessage, remove apenas os elementos gerados dinamicamente
             const elementsToRemove = partyEffectContainer.querySelectorAll('.balloon, .confetti');
             elementsToRemove.forEach(element => element.remove());
         }
@@ -3562,8 +3477,8 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                 corretorCreciInput.value = savedHeaderInfo.corretorCreci || '';
             } else {
                 // Define valores padrão se não houver nada salvo
-                imobiliariaNomeInput.value = 'CUNHA IMOBILIÁRIA';
-                corretorNomeInput.value = 'ALEX PEIXOTO';
+                imobiliariaNomeInput.value = '';
+                corretorNomeInput.value = '';
                 corretorCreciInput.value = 'CRECI/AL 5794';
             }
         }
@@ -3755,3 +3670,4 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
     </script>
 </body>
 </html>
+
