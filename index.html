@@ -1059,20 +1059,21 @@
             display: none;
         }
 
-        /* --- Estilos para Impressão do Formulário Principal --- */
+        /* --- NOVO: Estilos para Impressão do Formulário Principal (Layout Moderno e Horizontal) --- */
         @media print {
             body {
                 background-color: #fff;
                 color: #000;
                 padding: 0;
                 margin: 0;
-                font-size: 11pt;
+                font-size: 10pt;
+                font-family: 'Inter', sans-serif;
             }
 
             .container {
                 max-width: 100%;
                 margin: 0;
-                padding: 15mm;
+                padding: 10mm;
             }
 
             .card {
@@ -1116,111 +1117,116 @@
                 display: block !important;
             }
 
+            /* NOVO: Layout horizontal moderno para impressão */
             .print-header {
                 text-align: center;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
                 font-size: 1.4rem;
                 font-weight: bold;
                 text-transform: uppercase;
+                color: #333;
+                border-bottom: 2px solid #333;
+                padding-bottom: 10px;
             }
 
-            h1, h2, h3, h4 {
+            .print-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .print-section {
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                page-break-inside: avoid;
+            }
+
+            .print-section h3 {
+                font-size: 1.1rem;
+                color: #333;
+                margin-bottom: 12px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #ddd;
+                font-weight: 600;
+            }
+
+            .print-section p {
+                margin: 8px 0;
+                font-size: 0.9rem;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .print-section strong {
+                color: #333;
+                font-weight: 600;
+            }
+
+            .print-section .value {
+                font-weight: 600;
                 color: #000;
+                text-align: right;
+            }
+
+            .print-section.highlight {
+                background-color: #f0f8ff;
+                border: 1px solid #4cc9f0;
+            }
+
+            .print-section.highlight h3 {
+                color: #4cc9f0;
+                border-bottom-color: #4cc9f0;
+            }
+
+            .print-section.warning {
+                background-color: #fffaf0;
+                border: 1px solid #f8961e;
+            }
+
+            .print-section.warning h3 {
+                color: #f8961e;
+                border-bottom-color: #f8961e;
+            }
+
+            .print-section.success {
+                background-color: #f0fff4;
+                border: 1px solid #4cc9f0;
+            }
+
+            .print-section.success h3 {
+                color: #4cc9f0;
+                border-bottom-color: #4cc9f0;
+            }
+
+            .print-section.full-width {
+                grid-column: 1 / -1;
+            }
+
+            .print-notes {
+                background-color: #fff;
+                border: 1px dashed #999;
+                border-radius: 8px;
+                padding: 15px;
+                margin-top: 15px;
+                min-height: 120px;
+            }
+
+            .print-notes h4 {
+                font-size: 1rem;
+                color: #333;
                 margin-bottom: 10px;
                 font-weight: 600;
             }
 
-             h1 { display: none;}
-             h2 { font-size: 1.3rem; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 15px;}
-             h3 { font-size: 1.1rem; margin-top: 12px;}
-
-            .form-group {
-                margin-bottom: 15px;
-            }
-
-            .form-group label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #333;
-                font-size: 0.95rem;
-            }
-
-            .form-control {
-                display: none;
-            }
-
-            .form-group::after {
-                content: attr(data-value);
-                display: block;
-                padding: 8px 10px;
-                word-wrap: break-word;
-                white-space: pre-wrap;
-                color: #000;
-                margin-top: 4px;
-                min-height: 1.5em;
-                text-decoration: underline;
-                text-decoration-style: dashed;
-                text-decoration-color: #000;
-                text-underline-offset: 4px;
-                padding-bottom: 4px;
-            }
-             #form-group-saldoRemanescente::after,
-             #form-group-valorParcelaEntradaInicial::after {
-                 text-decoration: none;
-                 font-weight: bold;
-                 color: #333;
-             }
-
-             #form-group-observacoesCliente::after {
-                 min-height: 8em;
-                 text-decoration: none;
-                 border: 1px dashed #999;
-                 background-color: #f9f9f9;
-                 padding: 10px;
-                 margin-top: 5px;
-             }
-
-            .result-card {
-                background-color: #f0f0f0;
-                border: 1px solid #ccc;
-                border-left: 4px solid #ccc;
-                border-radius: 8px;
-                padding: 12px;
-                margin-top: 15px;
-                margin-bottom: 20px;
-                font-size: 1rem;
-                color: #000;
-            }
-            .result-card strong {
-                 color: #333;
-            }
-            .result-card p { margin: 6px 0; }
-
-            .saldo-remanescente-note {
-                display: block;
-                margin-top: 8px;
-                padding: 8px;
-                border: 1px dashed #999;
-                border-radius: 5px;
-                background-color: #fff;
-                font-size: 0.9rem;
-                color: #555;
-                word-wrap: break-word;
-            }
-
-            .divider {
-                height: 1px;
-                background-color: #ccc;
-                margin: 20px 0;
-                border: none;
-            }
-
             .print-footer {
-                 margin-top: 40px;
+                 margin-top: 30px;
                  padding-top: 20px;
                  border-top: 1px solid #ccc;
-                 font-size: 0.95rem;
+                 font-size: 0.9rem;
                  color: #000;
                  page-break-before: avoid;
              }
@@ -1276,6 +1282,10 @@
             }
 
              @media print and (max-width: 400px) {
+                 .print-grid {
+                     grid-template-columns: 1fr;
+                 }
+                 
                  .print-footer .footer-info,
                  .print-footer .signature-area {
                      flex-direction: column;
@@ -1676,6 +1686,56 @@
                 </div>
             </div>
 
+             <!-- NOVO: Layout de impressão moderno e horizontal -->
+             <div class="print-only">
+                 <div class="print-grid">
+                     <div class="print-section">
+                         <h3>Informações do Cliente</h3>
+                         <p><strong>Nome:</strong> <span class="value" id="print-nomeCliente"></span></p>
+                         <p><strong>Telefone:</strong> <span class="value" id="print-telefoneCliente"></span></p>
+                         <p><strong>Empreendimento:</strong> <span class="value" id="print-nomeEmpreendimento"></span></p>
+                     </div>
+                     
+                     <div class="print-section">
+                         <h3>Valores do Imóvel</h3>
+                         <p><strong>Valor do Imóvel:</strong> <span class="value" id="print-valorImovel"></span></p>
+                         <p><strong>Desconto (Subsídio):</strong> <span class="value" id="print-descontoMCMV"></span></p>
+                         <p><strong>Desconto Construtora:</strong> <span class="value" id="print-descontoConstrutora"></span></p>
+                         <p><strong>FGTS:</strong> <span class="value" id="print-valorFGTS"></span></p>
+                         <p><strong>Valor Financiado:</strong> <span class="value" id="print-valorFinanciado"></span></p>
+                     </div>
+                     
+                     <div class="print-section">
+                         <h3>Entrada</h3>
+                         <p><strong>Sinal para Construtora:</strong> <span class="value" id="print-sinalConstrutora"></span></p>
+                         <p><strong>Valor Parcelado:</strong> <span class="value" id="print-maximoConstrParc"></span></p>
+                         <p><strong>Parcelas:</strong> <span class="value" id="print-parcelasEntrada"></span></p>
+                         <p><strong>Correção INCC:</strong> <span class="value" id="print-correcaoINCC"></span></p>
+                         <p><strong>1ª Parcela:</strong> <span class="value" id="print-valorParcelaEntradaInicial"></span></p>
+                     </div>
+                     
+                     <div class="print-section">
+                         <h3>Intercaladas</h3>
+                         <p><strong>Valor das Intercaladas:</strong> <span class="value" id="print-valorIntercaladas"></span></p>
+                         <p><strong>Quantidade:</strong> <span class="value" id="print-quantidadeIntercaladas"></span></p>
+                         <p><strong>Total:</strong> <span class="value" id="print-totalIntercaladas"></span></p>
+                     </div>
+                     
+                     <div class="print-section highlight full-width">
+                         <h3>Resumo Financeiro</h3>
+                         <p><strong>Saldo Remanescente:</strong> <span class="value" id="print-saldoRemanescente"></span></p>
+                         <p id="print-saldoNota" style="font-size: 0.8rem; margin-top: 8px; color: #555;"></p>
+                     </div>
+                     
+                     <div class="print-section full-width">
+                         <h3>Observações</h3>
+                         <div class="print-notes">
+                             <p id="print-observacoes"></p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
              <div class="print-footer print-only">
                  <div class="footer-info">
                      <span>Cidade:_________________________</span>
@@ -1943,6 +2003,28 @@
         const totalIntercaladasSpan = document.getElementById('totalIntercaladas');
         // --- FIM NOVOS ELEMENTOS PARA INTERCALADAS ---
 
+        // --- NOVO: Elementos para impressão moderna ---
+        const printNomeCliente = document.getElementById('print-nomeCliente');
+        const printTelefoneCliente = document.getElementById('print-telefoneCliente');
+        const printNomeEmpreendimento = document.getElementById('print-nomeEmpreendimento');
+        const printValorImovel = document.getElementById('print-valorImovel');
+        const printDescontoMCMV = document.getElementById('print-descontoMCMV');
+        const printDescontoConstrutora = document.getElementById('print-descontoConstrutora');
+        const printValorFGTS = document.getElementById('print-valorFGTS');
+        const printValorFinanciado = document.getElementById('print-valorFinanciado');
+        const printSinalConstrutora = document.getElementById('print-sinalConstrutora');
+        const printMaximoConstrParc = document.getElementById('print-maximoConstrParc');
+        const printParcelasEntrada = document.getElementById('print-parcelasEntrada');
+        const printCorrecaoINCC = document.getElementById('print-correcaoINCC');
+        const printValorParcelaEntradaInicial = document.getElementById('print-valorParcelaEntradaInicial');
+        const printValorIntercaladas = document.getElementById('print-valorIntercaladas');
+        const printQuantidadeIntercaladas = document.getElementById('print-quantidadeIntercaladas');
+        const printTotalIntercaladas = document.getElementById('print-totalIntercaladas');
+        const printSaldoRemanescente = document.getElementById('print-saldoRemanescente');
+        const printSaldoNota = document.getElementById('print-saldoNota');
+        const printObservacoes = document.getElementById('print-observacoes');
+        // --- FIM NOVO: Elementos para impressão moderna ---
+
         // --- NOVO: Dados dos documentos por profissão ---
         const documentosPorProfissao = {
             'carteira-assinada': {
@@ -2117,6 +2199,46 @@
                 observacoesSimulacao: observacoesClienteTextArea.value.trim() // Conteúdo do NOVO campo Observações
             };
         }
+
+        // --- NOVA FUNÇÃO: Atualizar dados para impressão moderna ---
+        function atualizarDadosImpressao() {
+            const data = getFormattedValues();
+            
+            // Atualiza os elementos de impressão
+            if (printNomeCliente) printNomeCliente.textContent = data.nomeCliente;
+            if (printTelefoneCliente) printTelefoneCliente.textContent = data.telefoneCliente;
+            if (printNomeEmpreendimento) printNomeEmpreendimento.textContent = data.nomeEmpreendimento;
+            if (printValorImovel) printValorImovel.textContent = data.valorImovel;
+            if (printDescontoMCMV) printDescontoMCMV.textContent = data.descontoMCMV;
+            if (printDescontoConstrutora) printDescontoConstrutora.textContent = data.descontoConstrutora;
+            if (printValorFGTS) printValorFGTS.textContent = data.valorFGTS;
+            if (printValorFinanciado) printValorFinanciado.textContent = data.valorFinanciado;
+            if (printSinalConstrutora) printSinalConstrutora.textContent = data.sinalConstrutora;
+            if (printMaximoConstrParc) printMaximoConstrParc.textContent = data.maximoConstrParc;
+            if (printParcelasEntrada) printParcelasEntrada.textContent = data.parcelasEntrada + 'x';
+            if (printCorrecaoINCC) printCorrecaoINCC.textContent = data.correcaoINCC;
+            if (printValorParcelaEntradaInicial) printValorParcelaEntradaInicial.textContent = data.valorParcelaEntradaInicial;
+            if (printValorIntercaladas) printValorIntercaladas.textContent = data.valorIntercaladas;
+            if (printQuantidadeIntercaladas) printQuantidadeIntercaladas.textContent = data.quantidadeIntercaladas;
+            if (printTotalIntercaladas) printTotalIntercaladas.textContent = data.totalIntercaladas;
+            if (printSaldoRemanescente) printSaldoRemanescente.textContent = data.saldoRemanescente;
+            
+            // Atualiza a nota do saldo remanescente
+            if (printSaldoNota) {
+                const saldoNumerico = cleanCurrencyFormat(data.saldoRemanescente);
+                if (saldoNumerico > 0) {
+                    printSaldoNota.textContent = 'Nota: Esse valor ou parte dele, pode ser pago na entrega das chaves, intercaladas ou de forma que a construtora aceite.';
+                } else {
+                    printSaldoNota.textContent = '';
+                }
+            }
+            
+            // Atualiza as observações
+            if (printObservacoes) {
+                printObservacoes.textContent = data.observacoesSimulacao || 'Nenhuma observação adicionada.';
+            }
+        }
+        // --- FIM NOVA FUNÇÃO: Atualizar dados para impressão moderna ---
 
         function gerarConteudoSimulacaoTXT() {
             const data = getFormattedValues();
@@ -2595,6 +2717,9 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 valorParcelaEntradaInicialCalc = 0;
             }
             valorParcelaEntradaInicialSpan.textContent = formatCurrencyDisplay(valorParcelaEntradaInicialCalc);
+            
+            // --- NOVO: Atualiza os dados para impressão sempre que os valores são calculados ---
+            atualizarDadosImpressao();
         }
 
         function formatPhoneNumberForOutput(phoneNumber) {
@@ -3604,6 +3729,9 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
 
              // NOVO: Carrega os documentos da profissão padrão (Carteira Assinada) ao carregar a página
              carregarDocumentosPorProfissao('carteira-assinada');
+             
+             // NOVO: Atualiza os dados de impressão ao carregar a página
+             atualizarDadosImpressao();
         });
 
         // NOVO: Funções para Salvar e Carregar informações do cabeçalho do PDF (localStorage)
@@ -3724,45 +3852,11 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
          // --- Funcionalidade de Impressão ---
          if (btnImprimirSimulacao) {
              btnImprimirSimulacao.addEventListener('click', () => {
-                 // Antes de imprimir, vamos preencher os atributos data-value para que o CSS @media print possa usá-los
-                 // Percorre todos os form-groups para encontrar inputs/textareas e copiar seus valores para data-value
-                 const formGroups = simuladorCardElement.querySelectorAll('.form-group');
-                 formGroups.forEach(group => {
-                     const input = group.querySelector('input, textarea, select');
-                     if (input) {
-                         const inputId = input.id;
-                         let valueToPrint = "";
-
-                         // Define o valor a ser impresso com base no campo
-                         if (inputId === 'nomeEmpreendimento' || inputId === 'nomeCliente' || inputId === 'telefoneCliente') {
-                              // Campos de texto e telefone: deixar em branco com underscores
-                              valueToPrint = "________________________________________"; // Ajuste o número de underscores conforme necessário
-                         } else if (group.classList.contains('currency-input') || inputId === 'valorImovel' || inputId === 'descontoMCMV' || inputId === 'valorFinanciado' || inputId === 'valorFGTS' || inputId === 'sinalConstrutora' || inputId === 'descontoConstrutora' || inputId === 'maximoConstrParc' || inputId === 'valorIntercaladas') {
-                             // Campos de moeda: deixar em branco com underscores
-                              valueToPrint = "_______________"; // Ajuste o número de underscores
-                         } else if (inputId === 'parcelasEntrada' || inputId === 'quantidadeIntercaladas') {
-                             // Campo de quantidade de parcelas: deixar em branco com underscores
-                             valueToPrint = "__________"; // Ajuste o número de underscores
-                         } else if (inputId === 'correcaoINCC') {
-                             // Campo de percentual: deixar em branco com underscores
-                             valueToPrint = "_________"; // Ajuste o número de underscores
-                         } else if (inputId === 'observacoesCliente') {
-                             // Campo de observações: múltiplas linhas em branco
-                             valueToPrint = "_________________________________________\n_________________________________________\n_________________________________________\n_________________________________________\n_________________________________________"; // Múltiplas linhas de underscores
-                         }
-                         // Os campos de resultado (saldoRemanescente, valorParcelaEntradaInicial, totalIntercaladas) ainda mostrarão os valores calculados.
-                         // Se também quiser que fiquem em branco, adicione else if para seus form-groups aqui.
-
-                         group.setAttribute('data-value', valueToPrint);
-                     }
-                 });
+                 // Atualiza os dados de impressão antes de imprimir
+                 atualizarDadosImpressao();
+                 
                  // Aciona a impressão da janela atual. O CSS @media print fará o resto.
                  window.print();
-
-                 // Limpar os atributos data-value após a impressão
-                 formGroups.forEach(group => {
-                     group.removeAttribute('data-value');
-                 });
              });
          }
 
