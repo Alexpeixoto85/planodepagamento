@@ -1598,8 +1598,30 @@
                 </div>
             </div>
 
+            <!-- NOVA SEÇÃO: Intercaladas -->
+            <div class="divider"></div>
+            <h3>Intercaladas</h3> <div class="divider"></div>
+
+            <div class="form-group" id="form-group-valorIntercaladas">
+                <label for="valorIntercaladas">Valor das Intercaladas</label>
+                <div class="input-group">
+                    <input type="text" id="valorIntercaladas" class="form-control currency-input" value="0,00">
+                </div>
+            </div>
+
+            <div class="form-group" id="form-group-quantidadeIntercaladas">
+                <label for="quantidadeIntercaladas">Quantidade de Intercaladas</label>
+                <input type="number" id="quantidadeIntercaladas" class="form-control" step="1" value="0" inputmode="numeric">
+            </div>
+
+            <div class="result-card">
+                <p><strong>Total de Intercaladas:</strong> <span id="totalIntercaladas">R$ 0,00</span></p>
+            </div>
+            <!-- FIM NOVA SEÇÃO -->
+
             <div class="result-card">
                 <p><strong>Saldo Remanescente:</strong> <span id="saldoRemanescente">R$ 0,00</span></p>
+                <!-- A nota será inserida aqui via JavaScript quando o saldo for maior que 0 -->
             </div>
 
             <div class="result-card">
@@ -1915,6 +1937,12 @@
         const documentosContainer = document.getElementById('documentosContainer');
         // --- FIM NOVO: Elementos para seleção de profissão ---
 
+        // --- NOVOS ELEMENTOS PARA INTERCALADAS ---
+        const valorIntercaladasInput = document.getElementById('valorIntercaladas');
+        const quantidadeIntercaladasInput = document.getElementById('quantidadeIntercaladas');
+        const totalIntercaladasSpan = document.getElementById('totalIntercaladas');
+        // --- FIM NOVOS ELEMENTOS PARA INTERCALADAS ---
+
         // --- NOVO: Dados dos documentos por profissão ---
         const documentosPorProfissao = {
             'carteira-assinada': {
@@ -2082,6 +2110,9 @@
                 correcaoINCC: correcaoINCCInput.value + '%',
                 saldoRemanescente: saldoRemanescenteSpan.textContent,
                 valorParcelaEntradaInicial: valorParcelaEntradaInicialSpan.textContent,
+                valorIntercaladas: formatCurrencyDisplay(cleanCurrencyFormat(valorIntercaladasInput.value)),
+                quantidadeIntercaladas: quantidadeIntercaladasInput.value,
+                totalIntercaladas: totalIntercaladasSpan.textContent,
                 notasCliente: notasClienteTextArea.value.trim(), // Conteúdo da seção 'Notas do Cliente'
                 observacoesSimulacao: observacoesClienteTextArea.value.trim() // Conteúdo do NOVO campo Observações
             };
@@ -2113,7 +2144,14 @@ Valor Financiado (Caixa): ${data.valorFinanciado}
 Sinal para a Construtora: ${data.sinalConstrutora}
 Máximo que a Construtora Parcela: ${data.maximoConstrParc} em ${data.parcelasEntrada}x
 Correção Mensal (INCC): ${data.correcaoINCC}
+--------------------------------------------------
+Intercaladas:
+Valor das Intercaladas: ${data.valorIntercaladas}
+Quantidade de Intercaladas: ${data.quantidadeIntercaladas}
+Total de Intercaladas: ${data.totalIntercaladas}
+--------------------------------------------------
 Saldo Remanescente: ${data.saldoRemanescente}
+${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Nota: Esse valor ou parte dele, pode ser pago na entrega das chaves, intercaladas ou de forma que a construtora aceite.\n--------------------------------------------------\n' : ''}
 Valor da Entrada Parcelado: ${data.valorParcelaEntradaInicial}
 --------------------------------------------------
 `;
@@ -2130,7 +2168,6 @@ Valor da Entrada Parcelado: ${data.valorParcelaEntradaInicial}
             // Aplica wordWrap na observação final fixa
             const observacaoFinal = `Observação: Esta é uma simulação. Valores sujeitos a alteração e aprovação.
 O valor das parcelas de entrada é corrigido mensalmente pelo INCC
-${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou parte dele, pode ser pago na entrega das chaves, intercaladas ou de forma que a construtora aceite.' : ''}
 `;
             txtContent += wordWrap(observacaoFinal, maxWidth) + '\n';
 
@@ -2157,6 +2194,15 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             if (cleanCurrencyFormat(data.sinalConstrutora) > 0) msg += `  Sinal: ${data.sinalConstrutora}%0A`;
             msg += `  Parcelado Construtora: ${data.maximoConstrParc} em ${data.parcelasEntrada}x%0A`;
             msg += `  *1ª Parcela (com INCC ${data.correcaoINCC}):* ${data.valorParcelaEntradaInicial}%0A`;
+            
+            // Adiciona informações das intercaladas
+            if (cleanCurrencyFormat(data.valorIntercaladas) > 0 && data.quantidadeIntercaladas > 0) {
+                msg += `%0A*Intercaladas:*%0A`;
+                msg += `  Valor: ${data.valorIntercaladas}%0A`;
+                msg += `  Quantidade: ${data.quantidadeIntercaladas}%0A`;
+                msg += `  Total: ${data.totalIntercaladas}%0A`;
+            }
+            
             if (saldoRemanescenteNumerico > 0.00) {
                  msg += `  Saldo Remanescente: ${data.saldoRemanescente}%0A`;
                  msg += `  _Esse valor ou parte dele, pode ser pago na entrega das chaves, intercaladas ou de forma que a construtora aceite._%0A`;
@@ -2495,6 +2541,17 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             return phoneNumber.replace(/\D/g, '');
         }
 
+        // --- NOVA FUNÇÃO: Calcular total das intercaladas ---
+        function calcularIntercaladas() {
+            const valorIntercaladas = cleanCurrencyFormat(valorIntercaladasInput.value) || 0;
+            const quantidadeIntercaladas = parseInt(quantidadeIntercaladasInput.value) || 0;
+            const totalIntercaladas = valorIntercaladas * quantidadeIntercaladas;
+            
+            totalIntercaladasSpan.textContent = formatCurrencyDisplay(totalIntercaladas);
+            
+            return totalIntercaladas;
+        }
+
         function calcularValores() {
             const valorImovel = cleanCurrencyFormat(valorImovelInput.value) || 0;
             const descontoMCMV = cleanCurrencyFormat(descontoMCMVInput.value) || 0;
@@ -2507,13 +2564,20 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             const correcaoINCC = parseFloat(correcaoINCCInput.value) || 0;
             const valorEntradaCalculadoNumerico = valorImovel - descontoMCMV - valorFinanciado - valorFGTS - descontoConstrutora;
 
-            const saldoRemanescenteCalculado = valorEntradaCalculadoNumerico - sinalConstrutora - maximoConstrParc;
+            // Calcula o total das intercaladas
+            const totalIntercaladas = calcularIntercaladas();
+
+            // Subtrai o total das intercaladas do saldo remanescente
+            const saldoRemanescenteCalculado = valorEntradaCalculadoNumerico - sinalConstrutora - maximoConstrParc - totalIntercaladas;
             saldoRemanescenteSpan.textContent = formatCurrencyDisplay(saldoRemanescenteCalculado);
+            
+            // Remove qualquer nota existente
             const existingNote = saldoRemanescenteSpan.parentElement.querySelector('.saldo-remanescente-note');
             if(existingNote) {
                 existingNote.remove();
             }
 
+            // Adiciona a nota apenas se o saldo for maior que 0
             if (saldoRemanescenteCalculado > 0.00) {
                 const noteElement = document.createElement('span');
                 noteElement.classList.add('saldo-remanescente-note');
@@ -2557,12 +2621,16 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                 descontoConstrutoraInput,
                 valorFGTSInput,
                 sinalConstrutoraInput,
-                maximoConstrParcInput
+                maximoConstrParcInput,
+                valorIntercaladasInput
             ];
             camposMoedaParaLimpar.forEach(input => {
                 input.value = '0,00';
                 formatInputAsCurrency({ target: input });
             });
+            // Limpa o campo de quantidade de intercaladas
+            quantidadeIntercaladasInput.value = '0';
+            
             // Limpa o campo de Observações
              if (observacoesClienteTextArea) {
                  observacoesClienteTextArea.value = '';
@@ -3089,6 +3157,8 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             const descontoMCMVVal = cleanCurrencyFormat(descontoMCMVInput.value) || 0;
             const valorFinanciadoVal = cleanCurrencyFormat(valorFinanciadoInput.value) || 0;
             const valorFGTSVal = cleanCurrencyFormat(valorFGTSInput.value) || 0;
+            const valorIntercaladasVal = cleanCurrencyFormat(valorIntercaladasInput.value) || 0;
+            const quantidadeIntercaladasVal = parseInt(quantidadeIntercaladasInput.value) || 0;
             // -----------------------------------
 
             // Precisamos de pelo menos nome ou telefone para identificar um lead
@@ -3119,6 +3189,8 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                 leads[existingLeadIndex].descontoMCMV = descontoMCMVVal;
                 leads[existingLeadIndex].valorFinanciado = valorFinanciadoVal;
                 leads[existingLeadIndex].valorFGTS = valorFGTSVal;
+                leads[existingLeadIndex].valorIntercaladas = valorIntercaladasVal;
+                leads[existingLeadIndex].quantidadeIntercaladas = quantidadeIntercaladasVal;
                 // -------------------------------------------------
                 console.log(`Lead existente atualizado para: ${nomeClienteVal}`);
             } else {
@@ -3126,7 +3198,7 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                  // Mantenha esta verificação se quiser que só salve um lead novo
                  // caso pelo menos um dos campos principais ou novos campos tenham valor.
                  // Ajuste a condição conforme sua necessidade.
-                 if (!nomeClienteVal && !telefoneClienteOriginal && !nomeEmpreendimentoVal && !notasClienteVal && !observacoesSimulacaoVal && descontoMCMVVal === 0 && valorFinanciadoVal === 0 && valorFGTSVal === 0) {
+                 if (!nomeClienteVal && !telefoneClienteOriginal && !nomeEmpreendimentoVal && !notasClienteVal && !observacoesSimulacaoVal && descontoMCMVVal === 0 && valorFinanciadoVal === 0 && valorFGTSVal === 0 && valorIntercaladasVal === 0 && quantidadeIntercaladasVal === 0) {
                      console.warn("Nenhum dado suficiente para salvar um novo lead.");
                      return;
                  }
@@ -3144,7 +3216,9 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                     // --- Adiciona os novos campos ao novo lead ---
                     descontoMCMV: descontoMCMVVal,
                     valorFinanciado: valorFinanciadoVal,
-                    valorFGTS: valorFGTSVal
+                    valorFGTS: valorFGTSVal,
+                    valorIntercaladas: valorIntercaladasVal,
+                    quantidadeIntercaladas: quantidadeIntercaladasVal
                     // -------------------------------------------
                 };
                 // Verifica a duplicidade recente APENAS para novos leads antes de adicionar (mantém a lógica anterior)
@@ -3158,6 +3232,8 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                       lead.descontoMCMV === novoLead.descontoMCMV && // Inclui os novos campos na verificação
                       lead.valorFinanciado === novoLead.valorFinanciado &&
                       lead.valorFGTS === novoLead.valorFGTS &&
+                      lead.valorIntercaladas === novoLead.valorIntercaladas &&
+                      lead.quantidadeIntercaladas === novoLead.quantidadeIntercaladas &&
                      (new Date() - new Date(lead.dataISO)) < (10 * 1000) // Considera duplicado se salvo nos últimos 10 segundos
                  );
                  if (leadRecenteDuplicado) {
@@ -3262,6 +3338,20 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             });
             formatInputAsCurrency({ target: input });
         });
+        
+        // Adiciona os novos campos de intercaladas aos event listeners
+        [valorIntercaladasInput, quantidadeIntercaladasInput].forEach(input => {
+            if (input.type === 'text') {
+                input.addEventListener('input', (event) => {
+                    formatInputAsCurrency(event);
+                    calcularValores();
+                });
+                formatInputAsCurrency({ target: input });
+            } else {
+                input.addEventListener('input', calcularValores);
+            }
+        });
+        
         telefoneClienteInput.addEventListener('input', formatInputAsPhone);
 
         if (btnNovaSimulacao) {
@@ -3647,10 +3737,10 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                          if (inputId === 'nomeEmpreendimento' || inputId === 'nomeCliente' || inputId === 'telefoneCliente') {
                               // Campos de texto e telefone: deixar em branco com underscores
                               valueToPrint = "________________________________________"; // Ajuste o número de underscores conforme necessário
-                         } else if (group.classList.contains('currency-input') || inputId === 'valorImovel' || inputId === 'descontoMCMV' || inputId === 'valorFinanciado' || inputId === 'valorFGTS' || inputId === 'sinalConstrutora' || inputId === 'descontoConstrutora' || inputId === 'maximoConstrParc') {
+                         } else if (group.classList.contains('currency-input') || inputId === 'valorImovel' || inputId === 'descontoMCMV' || inputId === 'valorFinanciado' || inputId === 'valorFGTS' || inputId === 'sinalConstrutora' || inputId === 'descontoConstrutora' || inputId === 'maximoConstrParc' || inputId === 'valorIntercaladas') {
                              // Campos de moeda: deixar em branco com underscores
                               valueToPrint = "_______________"; // Ajuste o número de underscores
-                         } else if (inputId === 'parcelasEntrada') {
+                         } else if (inputId === 'parcelasEntrada' || inputId === 'quantidadeIntercaladas') {
                              // Campo de quantidade de parcelas: deixar em branco com underscores
                              valueToPrint = "__________"; // Ajuste o número de underscores
                          } else if (inputId === 'correcaoINCC') {
@@ -3660,7 +3750,7 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                              // Campo de observações: múltiplas linhas em branco
                              valueToPrint = "_________________________________________\n_________________________________________\n_________________________________________\n_________________________________________\n_________________________________________"; // Múltiplas linhas de underscores
                          }
-                         // Os campos de resultado (saldoRemanescente, valorParcelaEntradaInicial) ainda mostrarão os valores calculados.
+                         // Os campos de resultado (saldoRemanescente, valorParcelaEntradaInicial, totalIntercaladas) ainda mostrarão os valores calculados.
                          // Se também quiser que fiquem em branco, adicione else if para seus form-groups aqui.
 
                          group.setAttribute('data-value', valueToPrint);
