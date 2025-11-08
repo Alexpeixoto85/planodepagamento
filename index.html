@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,7 +16,6 @@
             --secondary-color: #3f37c9;
             --accent-color: #4895ef;
             --info-color: #007bff; /* Cor para botões de informação/backup */
-
 
             /* New Gold and Black Scheme */
             --gold-light: #FFD700;    /* Pure Gold */
@@ -98,7 +98,6 @@
             border-radius: var(--border-radius);
         }
         /* FIM: Modificações para a borda degradê no card */
-
 
         h1, h2, h3, h4 {
             color: var(--gold-light);
@@ -234,7 +233,6 @@
              margin-right: 0 !important; /* Remover margem do ícone para botões só com ícone */
          }
 
-
         .btn-primary {
             background-color: var(--gold-light);
             color: var(--dark-background);
@@ -306,7 +304,6 @@
             transform: translateY(-1px);
         }
 
-
         .btn i {
             margin-right: 8px;
         }
@@ -320,7 +317,6 @@
             font-weight: 700; /* Deixa o número em negrito */
              color: var(--gold-light); /* Cor para destacar a contagem */
         }
-
 
         .btn-group {
             display: grid;
@@ -375,8 +371,6 @@
               margin-right: 0; /* Remover margem direita do ícone */
          }
 
-
-
         .history-section {
             margin-top: 32px;
             padding-top: 24px;
@@ -415,7 +409,6 @@
              font-style: italic;
              color: var(--grey-detail);
          }
-
 
         .history-item .badge {
             background-color: var(--gold-light);
@@ -501,7 +494,6 @@
         #documentsModal {
             z-index: 1005; /* Entre o histórico e a confirmação */
         }
-
 
         .modal.show {
             display: flex;
@@ -634,6 +626,35 @@
             background-color: #383838; /* Um pouco mais claro que o fundo do bloco */
         }
 
+        /* Estilo para o seletor de profissão */
+        #documentsModal .profession-selector {
+            margin-bottom: 20px;
+        }
+        #documentsModal .profession-selector label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light-text);
+        }
+        #documentsModal .profession-selector select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #555;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background-color: #444;
+            color: var(--light-text);
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+        #documentsModal .profession-selector select:focus {
+            border-color: var(--gold-light);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
 
         @media (max-width: 768px) {
             .container {
@@ -777,7 +798,6 @@
             color: var(--dark-background);
         }
 
-
         .top-links {
             display: flex;
             justify-content: flex-end; /* Alterado para flex-end para alinhar qualquer coisa que sobre aqui à direita */
@@ -785,7 +805,6 @@
             margin-bottom: 20px;
             padding: 0 10px;
         }
-
 
         /* Estilos para o link do Blog para que ele fique no estilo do botão de impressão */
          #blogLink {
@@ -834,7 +853,6 @@
              color: var(--light-text); /* Garantir a cor do ícone */
          }
 
-
          .footer {
             margin-top: 40px;
             padding: 30px 20px;
@@ -863,7 +881,6 @@
              /* Removed marquee animation and related properties */
              display: block; /* Changed from inline-block */
          }
-
 
         #secaoListaLeads h2 {
             color: var(--gold-light);
@@ -902,7 +919,6 @@
          #tabelaLeads th:nth-child(8) { width: 12%; } /* Notas */
          #tabelaLeads th:nth-child(9) { width: 18%; text-align: left;} /* Observações */
          #tabelaLeads th:nth-child(10) { width: 8%; text-align: center;} /* Ações */
-
 
         #tabelaLeads th {
             background-color: var(--dark-detail);
@@ -947,7 +963,6 @@
             100% { background-position: 0% 50%; }
         }
 
-
         /* Aplicar as Animações ao Botão Leads e seu Ícone */
         #btnAbrirListaLeads {
             /* Manter estilos existentes */
@@ -975,7 +990,6 @@
                  margin-right: 5px !important; /* Manter um pequeno espaço em mobile também */
              }
         }
-
 
         /* Aplicar Animação de Borda Degradê ao Botão de Imprimir */
         #btnImprimirSimulacao {
@@ -1011,7 +1025,6 @@
               color: var(--light-text); /* Cor do ícone para contrastar com o fundo */
         }
 
-
         /* Novo estilo para o botão de documentos */
         #btnDocumentos {
              position: relative;
@@ -1041,12 +1054,10 @@
             color: var(--light-text);
         }
 
-
         /* Classe para esconder elementos na tela, mas mostrar na impressão */
         .print-only {
             display: none;
         }
-
 
         /* --- Estilos para Impressão do Formulário Principal --- */
         @media print {
@@ -1123,7 +1134,6 @@
              h2 { font-size: 1.3rem; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 15px;}
              h3 { font-size: 1.1rem; margin-top: 12px;}
 
-
             .form-group {
                 margin-bottom: 15px;
             }
@@ -1170,7 +1180,6 @@
                  padding: 10px;
                  margin-top: 5px;
              }
-
 
             .result-card {
                 background-color: #f0f0f0;
@@ -1233,7 +1242,6 @@
                  flex-basis: auto;
                  text-align: right;
              }
-
 
             .print-footer .signature-area {
                  display: flex;
@@ -1338,7 +1346,6 @@
             line-height: 1.1 !important;
         }
 
-
         .documents-print-layout .document-section {
             margin-bottom: 20px !important; /* Espaço menor entre seções */
             padding-bottom: 10px !important; /* Espaço menor */
@@ -1373,7 +1380,6 @@
             flex-shrink: 0; /* Impede que o ícone encolha */
             padding-top: 1px; /* Ajuste fino para alinhar o ícone com o texto */
         }
-
 
         /* --- ESTILOS DO EFEITO DE FESTA (BALÕES E CONFETES) --- */
         #partyEffectContainer {
@@ -1477,14 +1483,12 @@
         }
         /* --- FIM ESTILOS DO EFEITO DE FESTA --- */
 
-
     </style>
 </head>
 <body>
     <div class="container">
         <div class="top-links">
             </div>
-
 
         <div class="card" id="simuladorCard">
              <div class="print-header print-only">
@@ -1629,7 +1633,6 @@
                 <input type="file" id="importFile" accept=".json" style="display: none;">
             </div>
 
-
             <div id="notasSection" style="display: none; margin-top: 24px;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h3>Notas do Cliente</h3>
@@ -1668,7 +1671,6 @@
                  </div>
              </div>
         </div>
-
 
         <div id="secaoListaLeads" class="card" style="display: none; margin-top: 30px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:15px;">
@@ -1772,34 +1774,25 @@
                     </div>
                 </div>
 
+                <div class="profession-selector">
+                    <label for="profissaoCliente">Profissão do Cliente</label>
+                    <select id="profissaoCliente" class="form-control">
+                        <option value="carteira-assinada">Carteira Assinada</option>
+                        <option value="empresario">Empresário</option>
+                        <option value="forcas-armadas">Forças Armadas</option>
+                        <option value="autonomo">Autônomo</option>
+                        <option value="motorista-aplicativo">Motorista de Aplicativo</option>
+                        <option value="pensionista">Pensionista</option>
+                    </select>
+                </div>
+
                 <div class="document-header-info" id="pdfHeaderInfo">
                     <h2 style="color: #333; text-align: center; margin-bottom: 10px; font-size: 1.5rem;"></h2>
                     <p style="text-align: center; color: #555; font-size: 0.9rem; margin-bottom: 20px;"> -</p>
                 </div>
 
-                <div class="document-section">
-                    <h4>TITULAR</h4>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> RG com CPF ou CNH</li>
-                        <li><i class="fas fa-check-circle"></i> Certidão de Nascimento, Casamento, Divórcio ou Viuvez</li>
-                        <li><i class="fas fa-check-circle"></i> Comprovante de Endereço</li>
-                        <li><i class="fas fa-check-circle"></i> Carteira de Trabalho</li>
-                        <li><i class="fas fa-check-circle"></i> Nº do PIS</li>
-                        <li><i class="fas fa-check-circle"></i> Extrato de FGTS, se for utilizar o saldo</li>
-                        <li><i class="fas fa-check-circle"></i> Último Contracheque</li>
-                        <li><i class="fas fa-check-circle"></i> 3 últimos extratos bancários, sendo o caso</li>
-                        <li><i class="fas fa-check-circle"></i> Declaração Imposto de Renda PF, sendo o caso</li>
-                    </ul>
-                </div>
-                <div class="document-section">
-                    <h4>DEPENDENTE</h4>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> RG com CPF ou CNH</li>
-                        <li><i class="fas fa-check-circle"></i> Certidão de Nascimento, Casamento, Divórcio ou Viuvez</li>
-                        <li><i class="fas fa-check-circle"></i> Comprovante de Endereço (até 60 dias + outro de 24 meses atrás)</li>
-                        <li><i class="fas fa-check-circle"></i> Carteira de Trabalho</li>
-                        <li><i class="fas fa-check-circle"></i> Declaração de Parentesco</li>
-                    </ul>
+                <div id="documentosContainer">
+                    <!-- Conteúdo dos documentos será carregado aqui dinamicamente -->
                 </div>
             </div>
             <div class="modal-buttons">
@@ -1917,6 +1910,129 @@
         const partyMessage = document.getElementById('partyMessage');
         // --- FIM ELEMENTOS DO EFEITO DE FESTA ---
 
+        // --- NOVO: Elementos para seleção de profissão ---
+        const profissaoClienteSelect = document.getElementById('profissaoCliente');
+        const documentosContainer = document.getElementById('documentosContainer');
+        // --- FIM NOVO: Elementos para seleção de profissão ---
+
+        // --- NOVO: Dados dos documentos por profissão ---
+        const documentosPorProfissao = {
+            'carteira-assinada': {
+                titulo: 'CARTEIRA ASSINADA',
+                documentos: [
+                    'RG (ou CNH) + CPF',
+                    'Comprovante de residência',
+                    'Certidão de estado civil',
+                    'Carteira de trabalho',
+                    '2 Últimos contracheques',
+                    'Extrato do FGTS'
+                ]
+            },
+            'empresario': {
+                titulo: 'EMPRESÁRIO',
+                documentos: [
+                    'RG (ou CNH) + CPF',
+                    'Comprovante de residência',
+                    'Certidão de estado civil',
+                    'Cartão CNPJ',
+                    'Contrato social',
+                    'Pró labore',
+                    '3 Últimos extratos bancários'
+                ]
+            },
+            'forcas-armadas': {
+                titulo: 'FORÇAS ARMADAS',
+                documentos: [
+                    'RG (ou CNH) + CPF',
+                    'Comprovante de residência',
+                    'Certidão de estado civil',
+                    'Carteira de trabalho',
+                    '2 Últimos contracheques',
+                    'Declaração do engajamento'
+                ]
+            },
+            'autonomo': {
+                titulo: 'AUTÔNOMO',
+                documentos: [
+                    'RG (ou CNH) + CPF',
+                    'Comprovante de residência',
+                    'Certidão de estado civil',
+                    'Rede social',
+                    'Despesas em nome do cliente',
+                    'Notas fiscais',
+                    '3 Últimos extratos de maquineta',
+                    '3 Últimos extratos bancários'
+                ]
+            },
+            'motorista-aplicativo': {
+                titulo: 'MOTORISTA DE APLICATIVO',
+                documentos: [
+                    'RG (ou CNH) + CPF',
+                    'Comprovante de residência',
+                    'Certidão de estado civil',
+                    '3 Últimos meses do relatório',
+                    '3 Últimos extratos bancários',
+                    'Despesas em nome do cliente'
+                ]
+            },
+            'pensionista': {
+                titulo: 'PENSIONISTA',
+                documentos: [
+                    'RG (ou CNH) + CPF',
+                    'Comprovante de residência',
+                    'Certidão de estado civil',
+                    'Carteira de Trabalho',
+                    'Carta de concessão do benefício',
+                    '3 Últimos extratos do benefício',
+                    '3 Últimos extratos bancários'
+                ]
+            }
+        };
+        // --- FIM NOVO: Dados dos documentos por profissão ---
+
+        // --- NOVO: Função para carregar documentos baseado na profissão selecionada ---
+        function carregarDocumentosPorProfissao(profissao) {
+            const dadosProfissao = documentosPorProfissao[profissao];
+            
+            if (!dadosProfissao) {
+                console.error('Profissão não encontrada:', profissao);
+                return;
+            }
+
+            // Limpa o container de documentos
+            documentosContainer.innerHTML = '';
+
+            // Cria a seção de documentos
+            const documentSection = document.createElement('div');
+            documentSection.classList.add('document-section');
+
+            // Cria o título da seção
+            const title = document.createElement('h4');
+            title.textContent = dadosProfissao.titulo;
+            documentSection.appendChild(title);
+
+            // Cria a lista de documentos
+            const documentList = document.createElement('ul');
+            
+            dadosProfissao.documentos.forEach(documento => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<i class="fas fa-check-circle"></i> ${documento}`;
+                documentList.appendChild(listItem);
+            });
+
+            documentSection.appendChild(documentList);
+            documentosContainer.appendChild(documentSection);
+
+            // Adiciona a observação sobre Imposto de Renda
+            const obsSection = document.createElement('div');
+            obsSection.classList.add('document-section');
+            obsSection.innerHTML = `
+                <h4>OBSERVAÇÃO</h4>
+                <p>Apresentar Imposto de Renda caso tenha declarado</p>
+            `;
+            documentosContainer.appendChild(obsSection);
+        }
+        // --- FIM NOVO: Função para carregar documentos baseado na profissão selecionada ---
 
         // Função para quebrar linhas longas em um texto
         function wordWrap(text, maxWidth) {
@@ -1949,7 +2065,6 @@
             });
             return wrappedLines.join('\n');
         }
-
 
         function getFormattedValues() {
             return {
@@ -2019,7 +2134,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
 `;
             txtContent += wordWrap(observacaoFinal, maxWidth) + '\n';
 
-
              return txtContent;
         }
 
@@ -2066,6 +2180,8 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             const corretor = corretorNomeInput.value.trim() || 'Corretor(a)';
             const creci = corretorCreciInput.value.trim() || 'CRECI';
             const nomeClienteVal = nomeClienteInput.value.trim();
+            const profissaoSelecionada = profissaoClienteSelect.value;
+            const dadosProfissao = documentosPorProfissao[profissaoSelecionada];
 
             let txtContent = `DOCUMENTOS PARA SIMULAÇÃO\n\n`;
             txtContent += `--------------------------------------------------\n`;
@@ -2075,23 +2191,14 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
 
             txtContent += `Para darmos andamento à sua simulação, precisaremos dos seguintes documentos para o cliente ${nomeClienteVal || 'identificado'}:\n\n`;
 
-            txtContent += `--- TITULAR ---\n`;
-            txtContent += `- RG com CPF ou CNH\n`;
-            txtContent += `- Certidão de Nascimento, Casamento, Divórcio ou Viuvez\n`;
-            txtContent += `- Comprovante de Endereço\n`;
-            txtContent += `- Carteira de Trabalho\n`;
-            txtContent += `- Nº do PIS\n`;
-            txtContent += `- Extrato de FGTS, se for utilizar o saldo\n`;
-            txtContent += `- Último Contracheque\n`;
-            txtContent += `- 3 últimos extratos bancários, sendo o caso\n`;
-            txtContent += `- Declaração Imposto de Renda PF, sendo o caso\n\n`;
+            txtContent += `--- ${dadosProfissao.titulo} ---\n`;
+            dadosProfissao.documentos.forEach(documento => {
+                txtContent += `- ${documento}\n`;
+            });
+            txtContent += `\n`;
 
-            txtContent += `--- DEPENDENTE ---\n`;
-            txtContent += `- RG com CPF ou CNH\n`;
-            txtContent += `- Certidão de Nascimento, Casamento, Divórcio ou Viuvez\n`;
-            txtContent += `- Comprovante de Endereço (até 60 dias + outro de 24 meses atrás)\n`;
-            txtContent += `- Carteira de Trabalho\n`;
-            txtContent += `- Declaração de Parentesco\n\n`;
+            txtContent += `--- OBSERVAÇÃO ---\n`;
+            txtContent += `- Apresentar Imposto de Renda caso tenha declarado\n\n`;
 
             txtContent += `Por favor, me envie fotos claras e legíveis de todos os documentos. Caso tenha alguma dúvida, estou à disposição para ajudar!\n\n`;
             txtContent += `--------------------------------------------------\n`;
@@ -2120,7 +2227,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             documentsModal.classList.remove('show'); // Fecha o modal após o download
         }
 
-
         // Função para gerar a mensagem de documentos para WhatsApp (ATUALIZADA)
         // Agora, ela usa a mesma lógica de formatação de gerarConteudoDocumentosTXT()
         function gerarConteudoDocumentosWhatsApp() {
@@ -2128,6 +2234,8 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             const corretor = corretorNomeInput.value.trim() || 'Corretor(a)';
             const creci = corretorCreciInput.value.trim() || 'CRECI';
             const nomeClienteVal = nomeClienteInput.value.trim();
+            const profissaoSelecionada = profissaoClienteSelect.value;
+            const dadosProfissao = documentosPorProfissao[profissaoSelecionada];
 
             let msg = `*DOCUMENTOS PARA SIMULAÇÃO*%0A%0A`;
             msg += `*--------------------------------------------------*%0A`;
@@ -2137,23 +2245,14 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
 
             msg += `Para darmos andamento à sua simulação, precisaremos dos seguintes documentos para o cliente ${nomeClienteVal ? `*${nomeClienteVal}*` : 'identificado'}:%0A%0A`;
 
-            msg += `*--- TITULAR ---*%0A`;
-            msg += `✅ RG com CPF ou CNH%0A`;
-            msg += `✅ Certidão de Nascimento, Casamento, Divórcio ou Viuvez%0A`;
-            msg += `✅ Comprovante de Endereço%0A`;
-            msg += `✅ Carteira de Trabalho%0A`;
-            msg += `✅ Nº do PIS%0A`;
-            msg += `✅ Extrato de FGTS, se for utilizar o saldo%0A`;
-            msg += `✅ Último Contracheque%0A`;
-            msg += `✅ 3 últimos extratos bancários, sendo o caso%0A`;
-            msg += `✅ Declaração Imposto de Renda PF, sendo o caso%0A%0A`;
+            msg += `*--- ${dadosProfissao.titulo} ---*%0A`;
+            dadosProfissao.documentos.forEach(documento => {
+                msg += `✅ ${documento}%0A`;
+            });
+            msg += `%0A`;
 
-            msg += `*--- DEPENDENTE ---*%0A`;
-            msg += `✅ RG com CPF ou CNH%0A`;
-            msg += `✅ Certidão de Nascimento, Casamento, Divórcio ou Viuvez%0A`;
-            msg += `✅ Comprovante de Endereço (até 60 dias + outro de 24 meses atrás)%0A`;
-            msg += `✅ Carteira de Trabalho%0A`;
-            msg += `✅ Declaração de Parentesco%0A%0A`;
+            msg += `*--- OBSERVAÇÃO ---*%0A`;
+            msg += `✅ Apresentar Imposto de Renda caso tenha declarado%0A%0A`;
 
             msg += `Por favor, me envie fotos claras e legíveis de todos os documentos. Caso tenha alguma dúvida, estou à disposição para ajudar!%0A%0A`;
             msg += `*--------------------------------------------------*%0A`;
@@ -2163,7 +2262,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
 
             return encodeURIComponent(msg);
         }
-
 
         function baixarSimulacaoComoTXT() {
             const textoDaSimulacao = gerarConteudoSimulacaoTXT();
@@ -2298,7 +2396,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             }
         }
 
-
         function formatCurrencyDisplay(value) {
             const numberValue = parseFloat(value);
             if (isNaN(numberValue)) return 'R$ 0,00';
@@ -2352,7 +2449,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             }
         }
 
-
         function formatInputAsPhone(event) {
             const input = event.target;
             let value = input.value.replace(/\D/g, '');
@@ -2398,7 +2494,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
         function getCleanPhoneNumberDigits(phoneNumber) {
             return phoneNumber.replace(/\D/g, '');
         }
-
 
         function calcularValores() {
             const valorImovel = cleanCurrencyFormat(valorImovelInput.value) || 0;
@@ -2448,7 +2543,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             }
              return `${digits} (Formato Inválido)`;
          }
-
 
         function limparFormularioNovaSimulacao() {
             nomeEmpreendimentoInput.value = '';
@@ -2570,7 +2664,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                              console.log('Dados de notas inválidos ou não encontrados no backup.');
                         }
 
-
                         if (importedData.hasOwnProperty('listaLeads') && Array.isArray(importedData.listaLeads)) {
                              // Adicionar propriedades 'observacoes', 'descontoMCMV', 'valorFinanciado', 'valorFGTS' a leads antigos, se não existirem (para compatibilidade)
                              const leadsToImport = importedData.listaLeads.map(lead => {
@@ -2676,7 +2769,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                             if (!importedLead.dataISO) {
                                 importedLead.dataISO = new Date().toISOString();
                             }
-
 
                             const telefoneLimpoImportado = getCleanPhoneNumberDigits(importedLead.telefone);
                             const existingLeadIndex = existingLeads.findIndex(lead =>
@@ -2878,33 +2970,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
         }
         // --- FIM NOVO: Função para importar leads CSV ---
 
-        // --- Documentação do Formato CSV esperado para Importação de Leads ---
-        /*
-            Para importar leads usando o botão "Importar CSV", o arquivo CSV deve ter a primeira linha como CABEÇALHO.
-            As colunas devem ser separadas por PONTO E VÍRGULA (;) e podem conter as seguintes chaves (case-sensitive):
-
-            Cabeçalho obrigatório (mínimo):
-            "Nome";"Telefone"
-
-            Cabeçalho completo (todas as colunas suportadas):
-            "Nome";"Telefone";"Imovel";"Notas";"Observacoes";"Subsidio";"Financiado";"FGTS";"DataSalvo";"DataISO"
-
-            Exemplo de Conteúdo de arquivo CSV VÁLIDO:
-
-            Nome;Telefone;Imovel;Notas;Observacoes;Subsidio;Financiado;FGTS
-            "João Silva";"(82) 99999-1111";"Residencial Sol";"Cliente interessado em unidade térrea";"Disponível para contato a tarde";15000;180000;20000
-            "Maria Oliveira";"(82) 88888-2222";"Não Informado";"Sem notas";"Procura imóvel de 3 quartos";0;220000;0
-            "Carlos Souza";"(82) 77777-3333";"Vila Verde";"Importante: Cliente urgência";"Verificar documentação pendente"
-
-            Observações:
-            - Os valores numéricos (Subsidio, Financiado, FGTS) podem vir formatados com vírgula para decimal (ex: "1.500,50"), o script irá converter.
-            - Colunas não mencionadas no cabeçalho ou fora da ordem serão ignoradas.
-            - Registros sem "Nome" ou "Telefone" serão ignorados.
-            - Se "DataSalvo" ou "DataISO" não forem fornecidos, serão preenchidos automaticamente com a data e hora da importação.
-        */
-        // --- Fim da Documentação do Formato CSV esperado para Importação de Leads ---
-
-
         // Função para codificar HTML - Essencial para prevenir XSS ao exibir dados do localStorage
         if (typeof encodeHTML !== 'function') {
             window.encodeHTML = function(str) {
@@ -2920,7 +2985,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                 leadCountSpan.textContent = leads.length;
             }
         }
-
 
         function carregarLeadsNaTabela() {
             const leads = JSON.parse(localStorage.getItem('listaLeads')) || [];
@@ -3005,7 +3069,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
              modalConfirmBtn.addEventListener('click', confirmAction);
              modalCancelBtn.addEventListener('click', cancelAction);
         }
-
 
         function excluirLead(leadDataISO) {
             let todosLeads = JSON.parse(localStorage.getItem('listaLeads')) || [];
@@ -3188,7 +3251,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
         }
         // --- FIM FUNÇÃO PARA ACIONAR O EFEITO DE FESTA ---
 
-
         // --- Event Listeners ---
         [parcelasEntradaInput, correcaoINCCInput].forEach(input => {
             input.addEventListener('input', calcularValores);
@@ -3223,7 +3285,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             importFileInput.addEventListener('change', processImportFile);
         }
 
-
         toggleNotasBtn.addEventListener('click', () => {
             const isHidden = notasSection.style.display === 'none';
             notasSection.style.display = isHidden ? 'block' : 'none';
@@ -3257,7 +3318,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             }
         }
 
-
         salvarNotasBtn.addEventListener('click', () => {
             const nomeCliente = nomeClienteInput.value.trim();
             const telefoneClienteOriginal = telefoneClienteInput.value.trim();
@@ -3271,7 +3331,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
 
             const telefoneClienteFormatado = formatPhoneNumberForOutput(telefoneClienteOriginal);
             const telefoneLimpoParaComparacao = getCleanPhoneNumberDigits(telefoneClienteOriginal);
-
 
             const savedNotes = JSON.parse(localStorage.getItem('clientNotes')) || [];
 
@@ -3307,7 +3366,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
              // Recarrega a nota para o cliente atual (garante que a nota atualizada está na tela)
              loadNoteForCurrentClient();
         });
-
 
         baixarNotasBtn.addEventListener('click', () => {
             const nomeClienteVal = nomeClienteInput.value || 'Não Informado';
@@ -3352,7 +3410,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
              });
          }
 
-
         function deleteHistoryNote(id) {
             let savedNotes = JSON.parse(localStorage.getItem('clientNotes')) || [];
             savedNotes = savedNotes.filter(note => note.id !== id);
@@ -3367,7 +3424,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                  note.telefone === (telefoneClienteAtual || 'Não Informado')
              );
          }
-
 
          window.loadNoteFromHistory = function(id) {
              const savedNotes = JSON.parse(localStorage.getItem('clientNotes')) || [];
@@ -3392,7 +3448,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                  showToast('Erro ao carregar nota.', 'danger');
              }
          }
-
 
         openHistoryBtn.addEventListener('click', () => {
             loadHistoryNotes();
@@ -3440,7 +3495,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             }, duration);
         }
 
-
         document.addEventListener('DOMContentLoaded', () => {
              calcularValores();
              formatInputAsPhone({ target: telefoneClienteInput });
@@ -3457,6 +3511,9 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
 
              // NOVO: Carrega as informações do cabeçalho do PDF ao carregar a página
              loadPdfHeaderInfo();
+
+             // NOVO: Carrega os documentos da profissão padrão (Carteira Assinada) ao carregar a página
+             carregarDocumentosPorProfissao('carteira-assinada');
         });
 
         // NOVO: Funções para Salvar e Carregar informações do cabeçalho do PDF (localStorage)
@@ -3488,6 +3545,12 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
         corretorNomeInput.addEventListener('input', savePdfHeaderInfo);
         corretorCreciInput.addEventListener('input', savePdfHeaderInfo);
 
+        // NOVO: Event Listener para o seletor de profissão
+        if (profissaoClienteSelect) {
+            profissaoClienteSelect.addEventListener('change', function() {
+                carregarDocumentosPorProfissao(this.value);
+            });
+        }
 
         if (btnAbrirListaLeads) {
             btnAbrirListaLeads.addEventListener('click', () => {
@@ -3553,7 +3616,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
             });
         }
 
-
         // Associa a função salvarLead aos botões de ação que geram leads
         if (baixarSimulacaoAtualBtn) {
             baixarSimulacaoAtualBtn.addEventListener('click', () => {
@@ -3600,7 +3662,6 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
                          }
                          // Os campos de resultado (saldoRemanescente, valorParcelaEntradaInicial) ainda mostrarão os valores calculados.
                          // Se também quiser que fiquem em branco, adicione else if para seus form-groups aqui.
-
 
                          group.setAttribute('data-value', valueToPrint);
                      }
@@ -3670,4 +3731,3 @@ ${cleanCurrencyFormat(saldoRemanescenteSpan.textContent) > 0.00 ? 'Esse valor ou
     </script>
 </body>
 </html>
-
