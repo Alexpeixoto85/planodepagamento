@@ -10,24 +10,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4361ee;
-            --primary-dark: #3a56d4;
-            --secondary-color: #3f37c9;
-            --accent-color: #4895ef;
-            --info-color: #007bff;
+            /* Novo Esquema Azul e Dourado */
+            --gold-light: #FFD700;             /* Dourado claro (principal) */
+            --gold-dark: #DAA520;              /* Dourado escuro (hovers) */
+            --blue-bg-dark: #0d1b2a;           /* Fundo principal (azul bem escuro) */
+            --blue-bg-medium: #1b263b;         /* Fundo de cards/modais (azul escuro) */
+            --blue-bg-light: #415a77;          /* Fundo de inputs/botões sec. (azul médio) */
+            --blue-border: #778da9;            /* Bordas (azul-cinza claro) */
+            
+            --light-text: #f0f0f0;             /* Texto principal (branco) */
+            --grey-detail: #a9b4c2;          /* Texto secundário (cinza-azulado) */
 
-            /* New Gold and Black Scheme */
-            --gold-light: #FFD700;
-            --gold-dark: #DAA520;
-            --dark-background: #1a1a1a;
-            --dark-detail: #2c2c2c;
-            --light-text: #f0f0f0;
-            --grey-detail: #888;
+            /* Cores de Ação */
+            --info-color: #007bff;             /* Botões de backup (azul brilhante) */
+            --danger-color: #f72585;           /* Botões de perigo (rosa/vermelho) */
+            --success-color: #4cc9f0;           /* Cor de sucesso e gradiente (azul claro) */
+            --warning-color: var(--gold-dark);  /* Cor de aviso (usa o dourado escuro) */
 
-            --danger-color: #f72585;
-            --success-color: #4cc9f0;
-            --warning-color: #f8961e;
-
+            /* Propriedades da UI */
             --border-radius: 12px;
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
@@ -43,7 +43,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--dark-background);
+            background-color: var(--blue-bg-dark); /* MODIFICADO */
             color: var(--light-text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -88,7 +88,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: #333;
+            background: var(--blue-bg-medium); /* MODIFICADO */
             z-index: -1;
             border-radius: var(--border-radius);
         }
@@ -142,20 +142,20 @@
             padding: 8px;
             border: 1px solid var(--gold-light);
             border-radius: var(--border-radius);
-            background-color: var(--dark-detail);
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             font-size: 0.9rem;
-            color: var(--light-text);
+            color: var(--light-text); /* MODIFICADO */
             word-wrap: break-word;
         }
 
         .form-control {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid #555;
+            border: 1px solid var(--blue-border); /* MODIFICADO */
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
-            background-color: #444;
+            background-color: var(--blue-bg-light); /* MODIFICADO */
             color: var(--light-text);
             -webkit-appearance: none;
         }
@@ -173,7 +173,7 @@
         }
 
         .result-card {
-            background-color: var(--dark-detail);
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             border-radius: var(--border-radius);
             padding: 16px;
             margin-top: 16px;
@@ -196,7 +196,7 @@
 
         .divider {
             height: 1px;
-            background-color: #555;
+            background-color: var(--blue-border); /* MODIFICADO */
             margin: 24px 0;
             border: none;
         }
@@ -229,7 +229,7 @@
 
         .btn-primary {
             background-color: var(--gold-light);
-            color: var(--dark-background);
+            color: var(--blue-bg-dark); /* MODIFICADO - Texto mais escuro para o dourado */
         }
 
         .btn-primary:hover {
@@ -238,12 +238,12 @@
         }
 
         .btn-secondary {
-            background-color: #555;
+            background-color: var(--blue-bg-light); /* MODIFICADO */
             color: var(--light-text);
         }
 
         .btn-secondary:hover {
-            background-color: #666;
+            background-color: var(--blue-border); /* MODIFICADO */
             transform: translateY(-1px);
         }
 
@@ -268,12 +268,12 @@
         }
 
         .btn-warning {
-            background-color: var(--gold-dark);
-            color: var(--dark-background);
+            background-color: var(--warning-color); /* MODIFICADO - Usa var */
+            color: var(--blue-bg-dark); /* MODIFICADO - Usa var */
         }
 
         .btn-warning:hover {
-            background-color: var(--gold-light);
+            background-color: var(--gold-light); /* MODIFICADO - Usa var */
             transform: translateY(-1px);
         }
 
@@ -360,7 +360,7 @@
              width: auto;
              flex-shrink: 0;
              background-color: var(--gold-light);
-             color: var(--dark-background);
+             color: var(--blue-bg-dark); /* MODIFICADO */
          }
 
          .top-button-container .btn-calculator:hover {
@@ -375,11 +375,11 @@
         .history-section {
             margin-top: 32px;
             padding-top: 24px;
-            border-top: 1px solid #555;
+            border-top: 1px solid var(--blue-border); /* MODIFICADO */
         }
 
         .history-item {
-            background-color: #333;
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             border-radius: var(--border-radius);
             padding: 20px;
             margin-bottom: 16px;
@@ -406,14 +406,14 @@
          .history-item .note-content {
              margin-top: 12px;
              padding-top: 12px;
-             border-top: 1px solid #555;
+             border-top: 1px solid var(--blue-border); /* MODIFICADO */
              font-style: italic;
-             color: var(--grey-detail);
+             color: var(--grey-detail); /* MODIFICADO */
          }
 
         .history-item .badge {
             background-color: var(--gold-light);
-            color: var(--dark-background);
+            color: var(--blue-bg-dark); /* MODIFICADO */
             padding: 4px 8px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -436,12 +436,12 @@
         .empty-state {
             text-align: center;
             padding: 40px 20px;
-            color: var(--grey-detail);
+            color: var(--grey-detail); /* MODIFICADO */
         }
 
         .empty-state i {
             font-size: 2.5rem;
-            color: #555;
+            color: var(--blue-border); /* MODIFICADO */
             margin-bottom: 16px;
         }
 
@@ -452,7 +452,7 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background-color: var(--dark-detail);
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             color: var(--gold-light);
             display: flex;
             align-items: center;
@@ -467,7 +467,7 @@
 
         .fab:hover {
             transform: scale(1.1);
-            background-color: #444;
+            background-color: var(--blue-bg-light); /* MODIFICADO */
         }
 
         .modal {
@@ -499,7 +499,7 @@
         }
 
         .modal-content {
-            background-color: var(--dark-background);
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             border-radius: var(--border-radius);
             padding: 24px;
             width: 100%;
@@ -521,7 +521,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            border-bottom: 1px solid #555;
+            border-bottom: 1px solid var(--blue-border); /* MODIFICADO */
             padding-bottom: 15px;
         }
 
@@ -535,7 +535,7 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--grey-detail);
+            color: var(--grey-detail); /* MODIFICADO */
         }
 
         #historyList {
@@ -549,7 +549,7 @@
         #documentsModal .document-section {
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid var(--blue-bg-light); /* MODIFICADO */
         }
 
         #documentsModal .document-section:last-child {
@@ -586,7 +586,7 @@
         #documentsModal .developer-info-modal {
             margin-top: 20px;
             font-size: 0.85rem;
-            color: var(--grey-detail);
+            color: var(--grey-detail); /* MODIFICADO */
             text-align: center;
         }
 
@@ -608,7 +608,7 @@
         }
 
         #documentsModal .editable-header-info {
-            background-color: var(--dark-detail);
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             border-radius: var(--border-radius);
             padding: 15px;
             margin-bottom: 20px;
@@ -626,13 +626,13 @@
         #documentsModal .editable-header-info label {
             font-size: 0.9rem;
             font-weight: normal;
-            color: var(--grey-detail);
+            color: var(--grey-detail); /* MODIFICADO */
         }
 
         #documentsModal .editable-header-info input.form-control {
             padding: 10px 12px;
             font-size: 0.95rem;
-            background-color: #383838;
+            background-color: var(--blue-bg-light); /* MODIFICADO */
         }
 
         #documentsModal .profession-selector {
@@ -649,10 +649,10 @@
         #documentsModal .profession-selector select {
             width: 100%;
             padding: 12px 16px;
-            border: 1px solid #555;
+            border: 1px solid var(--blue-border); /* MODIFICADO */
             border-radius: var(--border-radius);
             font-size: 1rem;
-            background-color: #444;
+            background-color: var(--blue-bg-light); /* MODIFICADO */
             color: var(--light-text);
             -webkit-appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -780,7 +780,7 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
             max-width: 90%;
             text-align: center;
-            background-color: var(--dark-detail);
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             color: var(--light-text);
         }
 
@@ -798,8 +798,8 @@
             color: white;
         }
         .toast-warning {
-            background-color: var(--gold-dark);
-            color: var(--dark-background);
+            background-color: var(--warning-color); /* MODIFICADO */
+            color: var(--blue-bg-dark); /* MODIFICADO */
         }
 
         .top-links {
@@ -837,7 +837,7 @@
              left: 0;
              right: 0;
              bottom: 0;
-             background: var(--dark-detail);
+             background: var(--blue-bg-medium); /* MODIFICADO */
              z-index: -1;
              border-radius: var(--border-radius);
          }
@@ -855,11 +855,11 @@
          .footer {
             margin-top: 40px;
             padding: 30px 20px;
-            background-color: var(--dark-detail);
+            background-color: var(--blue-bg-dark); /* MODIFICADO */
             text-align: center;
             color: var(--light-text);
             font-size: 0.9rem;
-            border-top: 1px solid #555;
+            border-top: 1px solid var(--blue-bg-medium); /* MODIFICADO */
          }
          .footer p {
              margin: 5px 0;
@@ -876,7 +876,7 @@
 
          .marquee-text {
              font-size: 0.8rem;
-             color: var(--grey-detail);
+             color: var(--grey-detail); /* MODIFICADO */
              display: block;
          }
 
@@ -887,14 +887,14 @@
         }
         #tabelaLeads {
             color: var(--light-text);
-            border: 1px solid #555;
+            border: 1px solid var(--blue-border); /* MODIFICADO */
             margin-top: 20px;
              width: 100%;
              display: table;
              border-collapse: collapse;
         }
         #tabelaLeads th, #tabelaLeads td {
-            border: 1px solid #555;
+            border: 1px solid var(--blue-border); /* MODIFICADO */
             padding: 10px;
             text-align: left;
             vertical-align: top;
@@ -914,14 +914,14 @@
          #tabelaLeads th:nth-child(10) { width: 8%; text-align: center;}
 
         #tabelaLeads th {
-            background-color: var(--dark-detail);
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
             color: var(--gold-light);
         }
         #tabelaLeads tbody tr:nth-child(even) {
-            background-color: #2c2c2c;
+            background-color: var(--blue-bg-medium); /* MODIFICADO */
         }
         #tabelaLeads tbody tr:hover {
-            background-color: #444;
+            background-color: var(--blue-bg-light); /* MODIFICADO */
         }
         #tabelaLeads .btn-danger i {
             margin-right: 0;
@@ -993,7 +993,7 @@
              left: 0;
              right: 0;
              bottom: 0;
-             background: var(--dark-detail);
+             background: var(--blue-bg-medium); /* MODIFICADO */
              z-index: -1;
              border-radius: var(--border-radius);
         }
@@ -1021,7 +1021,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--dark-detail);
+            background: var(--blue-bg-medium); /* MODIFICADO */
             z-index: -1;
             border-radius: var(--border-radius);
         }
@@ -1050,7 +1050,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--dark-detail);
+            background: var(--blue-bg-medium); /* MODIFICADO */
             z-index: -1;
             border-radius: var(--border-radius);
         }
@@ -2543,6 +2543,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
         }
 
         // NOVA FUNÇÃO: Gerar PDF da simulação com layout personalizado e elegante
+        // NOVA FUNÇÃO: Gerar PDF da simulação com layout personalizado e elegante
         async function baixarSimulacaoComoPdf() {
             showToast('Gerando PDF da simulação... Aguarde um momento.', 'info', 3000);
 
@@ -2556,42 +2557,43 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 const lineHeight = 6;
                 const sectionSpacing = 12;
                 
-                // Paleta de cores elegante
+                // --- NOVA PALETA DE CORES PROFISSIONAL (AZUL/DOURADO/CINZA) ---
                 const colors = {
-                    primary: '#2c3e50',
-                    secondary: '#3498db',
-                    accent: '#e74c3c',
-                    success: '#27ae60',
-                    warning: '#e67e22',
-                    light: '#ecf0f1',
-                    dark: '#34495e'
+                    bgHeader: '#1b263b',    // Azul escuro (do novo UI) para cabeçalhos
+                    bgBody: '#ffffff',      // Fundo branco para conteúdo
+                    bgHighlight: '#f0f0f0', // Cinza claro para o bloco de cliente
+                    textHeader: '#FFD700',  // Dourado para texto do cabeçalho
+                    textBody: '#333333',    // Texto do corpo (preto suave)
+                    textAccent: '#DAA520',   // Dourado escuro para ênfase (Saldo)
+                    border: '#e0e0e0'       // Borda sutil
                 };
+                // --- FIM DA NOVA PALETA ---
                 
                 // Cabeçalho
-                pdf.setFillColor(44, 62, 80);
+                pdf.setFillColor(colors.bgHeader); // MODIFICADO
                 pdf.rect(0, 0, 210, 25, 'F');
                 
-                pdf.setTextColor(255, 255, 255);
+                pdf.setTextColor(colors.textHeader); // MODIFICADO
                 pdf.setFontSize(18);
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('SIMULAÇÃO DE PLANO DE PAGAMENTO', 105, 15, { align: 'center' });
                 
                 // Reset para conteúdo principal
                 yPosition = 35;
-                pdf.setTextColor(0, 0, 0);
                 
                 // Informações do Cliente - Bloco 1
-                pdf.setFillColor(236, 240, 241);
-                pdf.roundedRect(margin, yPosition, 180, 30, 3, 3, 'F');
+                pdf.setFillColor(colors.bgHighlight); // MODIFICADO
+                pdf.setDrawColor(colors.border); // MODIFICADO
+                pdf.roundedRect(margin, yPosition, 180, 30, 3, 3, 'DF'); // MODIFICADO
                 
                 pdf.setFontSize(14);
                 pdf.setFont('helvetica', 'bold');
-                pdf.setTextColor(colors.primary);
+                pdf.setTextColor(colors.bgHeader); // MODIFICADO
                 pdf.text('INFORMAÇÕES DO CLIENTE', margin + 5, yPosition + 8);
                 
                 pdf.setFontSize(10);
                 pdf.setFont('helvetica', 'normal');
-                pdf.setTextColor(colors.dark);
+                pdf.setTextColor(colors.textBody); // MODIFICADO
                 pdf.text(`Nome: ${data.nomeCliente}`, margin + 5, yPosition + 15);
                 pdf.text(`Telefone: ${data.telefoneCliente}`, margin + 5, yPosition + 20);
                 pdf.text(`Empreendimento: ${data.nomeEmpreendimento}`, margin + 5, yPosition + 25);
@@ -2602,21 +2604,21 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 const col1 = margin;
                 const col2 = 105;
                 const boxWidth = 85;
-                const boxHeight = 45;
-
+                
                 // Bloco 2: Valores do Imóvel
-                pdf.setFillColor(52, 152, 219);
+                pdf.setFillColor(colors.bgHeader); // MODIFICADO
                 pdf.roundedRect(col1, yPosition, boxWidth, 15, 3, 3, 'F');
                 
-                pdf.setTextColor(255, 255, 255);
+                pdf.setTextColor(colors.textHeader); // MODIFICADO
                 pdf.setFontSize(11);
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('VALORES DO IMÓVEL', col1 + 5, yPosition + 10);
                 
-                pdf.setFillColor(241, 248, 254);
-                pdf.roundedRect(col1, yPosition + 15, boxWidth, boxHeight, 3, 3, 'F');
+                pdf.setFillColor(colors.bgBody); // MODIFICADO
+                pdf.setDrawColor(colors.border); // MODIFICADO
+                pdf.roundedRect(col1, yPosition + 15, boxWidth, 45, 3, 3, 'DF'); // MODIFICADO (boxHeight 45)
                 
-                pdf.setTextColor(colors.dark);
+                pdf.setTextColor(colors.textBody); // MODIFICADO
                 pdf.setFontSize(9);
                 pdf.setFont('helvetica', 'normal');
                 let textY = yPosition + 25;
@@ -2631,18 +2633,19 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.text(`Financiado: ${data.valorFinanciado}`, col1 + 5, textY);
 
                 // Bloco 3: Entrada
-            pdf.setFillColor(231, 76, 60);
-            pdf.roundedRect(col2, yPosition, boxWidth, 15, 3, 3, 'F');
-
-            pdf.setTextColor(255, 255, 255);
-            pdf.setFontSize(11);
-            pdf.setFont('helvetica', 'bold');
-            pdf.text('ENTRADA', col2 + 5, yPosition + 10);
-
-            pdf.setFillColor(254, 242, 242);
-            pdf.roundedRect(col2, yPosition + 15, boxWidth, 57, 3, 3, 'F');
+                pdf.setFillColor(colors.bgHeader); // MODIFICADO
+                pdf.roundedRect(col2, yPosition, boxWidth, 15, 3, 3, 'F');
                 
-                pdf.setTextColor(colors.dark);
+                pdf.setTextColor(colors.textHeader); // MODIFICADO
+                pdf.setFontSize(11);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('ENTRADA', col2 + 5, yPosition + 10);
+                
+                pdf.setFillColor(colors.bgBody); // MODIFICADO
+                pdf.setDrawColor(colors.border); // MODIFICADO
+                pdf.roundedRect(col2, yPosition + 15, boxWidth, 57, 3, 3, 'DF'); // MODIFICADO (boxHeight 57)
+                
+                pdf.setTextColor(colors.textBody); // MODIFICADO
                 pdf.setFontSize(9);
                 pdf.setFont('helvetica', 'normal');
                 textY = yPosition + 25;
@@ -2655,32 +2658,34 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.text(`Correção INCC: ${data.correcaoINCC}`, col2 + 5, textY);
                 textY += lineHeight;
                 pdf.text(`1ª Parcela: ${data.valorParcelaEntradaInicial}`, col2 + 5, textY);
-            // NOVO: Adiciona a nota de rodapé pequena
-            textY += 5; // Um pequeno espaço
-            pdf.setFontSize(7); // Define a fonte bem pequena
-            pdf.setTextColor(colors.dark); // Garante a cor
 
-            const notaTexto = "Nas parcelas da entrada pagas durante a obra, incidem o INCC, após a entregas das chaves incide IPCA +TR";
-            // Quebra o texto para caber (boxWidth is 85, -10 for padding)
-            const notaLines = pdf.splitTextToSize(notaTexto, 75); 
+                // NOVO: Adiciona a nota de rodapé pequena (Alteração anterior mantida)
+                textY += 5; // Um pequeno espaço
+                pdf.setFontSize(7); // Define a fonte bem pequena
+                pdf.setTextColor(colors.textBody); // MODIFICADO
+                
+                const notaTexto = "Nas parcelas da entrada pagas durante a obra, incidem o INCC, após a entregas das chaves incide IPCA +TR";
+                // Quebra o texto para caber (boxWidth is 85, -10 for padding)
+                const notaLines = pdf.splitTextToSize(notaTexto, 75); 
+                
+                pdf.text(notaLines, col2 + 5, textY);
 
-            pdf.text(notaLines, col2 + 5, textY);
-
-                yPosition += 57 + 20;
+                yPosition += 57 + 20; // MODIFICADO (boxHeight 57)
 
                 // Bloco 4: Intercaladas
-                pdf.setFillColor(39, 174, 96);
+                pdf.setFillColor(colors.bgHeader); // MODIFICADO
                 pdf.roundedRect(col1, yPosition, boxWidth, 15, 3, 3, 'F');
                 
-                pdf.setTextColor(255, 255, 255);
+                pdf.setTextColor(colors.textHeader); // MODIFICADO
                 pdf.setFontSize(11);
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('INTERCALADAS', col1 + 5, yPosition + 10);
                 
-                pdf.setFillColor(232, 245, 233);
-                pdf.roundedRect(col1, yPosition + 15, boxWidth, 30, 3, 3, 'F');
+                pdf.setFillColor(colors.bgBody); // MODIFICADO
+                pdf.setDrawColor(colors.border); // MODIFICADO
+                pdf.roundedRect(col1, yPosition + 15, boxWidth, 30, 3, 3, 'DF'); // MODIFICADO
                 
-                pdf.setTextColor(colors.dark);
+                pdf.setTextColor(colors.textBody); // MODIFICADO
                 pdf.setFontSize(9);
                 pdf.setFont('helvetica', 'normal');
                 textY = yPosition + 25;
@@ -2691,40 +2696,42 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.text(`Total: ${data.totalIntercaladas}`, col1 + 5, textY);
 
                 // Bloco 5: Resumo Financeiro
-                pdf.setFillColor(230, 126, 34);
+                pdf.setFillColor(colors.bgHeader); // MODIFICADO
                 pdf.roundedRect(col2, yPosition, boxWidth, 15, 3, 3, 'F');
                 
-                pdf.setTextColor(255, 255, 255);
+                pdf.setTextColor(colors.textHeader); // MODIFICADO
                 pdf.setFontSize(11);
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('RESUMO FINANCEIRO', col2 + 5, yPosition + 10);
                 
-                pdf.setFillColor(255, 243, 224);
-                pdf.roundedRect(col2, yPosition + 15, boxWidth, 30, 3, 3, 'F');
+                pdf.setFillColor(colors.bgBody); // MODIFICADO
+                pdf.setDrawColor(colors.border); // MODIFICADO
+                pdf.roundedRect(col2, yPosition + 15, boxWidth, 30, 3, 3, 'DF'); // MODIFICADO
                 
-                pdf.setTextColor(colors.dark);
+                pdf.setTextColor(colors.textBody); // MODIFICADO
                 pdf.setFontSize(10);
                 pdf.setFont('helvetica', 'bold');
                 pdf.text(`Saldo Remanescente:`, col2 + 5, yPosition + 25);
-                pdf.setTextColor(colors.accent);
+                pdf.setTextColor(colors.textAccent); // MODIFICADO
                 pdf.setFontSize(12);
                 pdf.text(`${data.saldoRemanescente}`, col2 + 5, yPosition + 35);
 
                 yPosition += 45;
 
                 // Bloco 6: Observações (largura total)
-                pdf.setFillColor(149, 165, 166);
+                pdf.setFillColor(colors.bgHeader); // MODIFICADO
                 pdf.roundedRect(margin, yPosition, 180, 15, 3, 3, 'F');
                 
-                pdf.setTextColor(255, 255, 255);
+                pdf.setTextColor(colors.textHeader); // MODIFICADO
                 pdf.setFontSize(11);
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('OBSERVAÇÕES', margin + 5, yPosition + 10);
                 
-                pdf.setFillColor(248, 249, 250);
-                pdf.roundedRect(margin, yPosition + 15, 180, 40, 3, 3, 'F');
+                pdf.setFillColor(colors.bgHighlight); // MODIFICADO
+                pdf.setDrawColor(colors.border); // MODIFICADO
+                pdf.roundedRect(margin, yPosition + 15, 180, 40, 3, 3, 'DF'); // MODIFICADO
                 
-                pdf.setTextColor(colors.dark);
+                pdf.setTextColor(colors.textBody); // MODIFICADO
                 pdf.setFontSize(9);
                 pdf.setFont('helvetica', 'normal');
                 const observacoes = data.observacoesSimulacao || 'Nenhuma observação adicionada.';
@@ -2733,13 +2740,14 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
 
                 yPosition += 65;
 
-                // NOVO: Linha de Data (Substituindo Assinaturas)
-            pdf.setTextColor(colors.dark);
-            pdf.setFontSize(10);
-            pdf.setFont('helvetica', 'normal');
-            // Centraliza a nova linha de data
-            pdf.text('Maceió, ________de____________de___________.', 105, yPosition + 10, { align: 'center' });
-            yPosition += 20; // Avança a posição para o final
+                // NOVO: Linha de Data (Alteração anterior mantida)
+                pdf.setTextColor(colors.textBody); // MODIFICADO
+                pdf.setFontSize(10);
+                pdf.setFont('helvetica', 'normal');
+                // Centraliza a nova linha de data
+                pdf.text('Maceió, ________de____________de___________.', 105, yPosition + 10, { align: 'center' });
+                yPosition += 20; // Avança a posição para o final
+
                 // Nome do arquivo
                 const nomeArquivoBase = nomeEmpreendimentoInput.value.trim().replace(/\s+/g, '_') || 'Simulacao';
                 const nomeClienteBase = nomeClienteInput.value.trim().replace(/\s+/g, '_') || 'Cliente';
