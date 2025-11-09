@@ -10,24 +10,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Novo Esquema Azul e Dourado */
-            --gold-light: #FFD700;             /* Dourado claro (principal) */
-            --gold-dark: #DAA520;              /* Dourado escuro (hovers) */
-            --blue-bg-dark: #0d1b2a;           /* Fundo principal (azul bem escuro) */
-            --blue-bg-medium: #1b263b;         /* Fundo de cards/modais (azul escuro) */
-            --blue-bg-light: #415a77;          /* Fundo de inputs/botões sec. (azul médio) */
-            --blue-border: #778da9;            /* Bordas (azul-cinza claro) */
-            
-            --light-text: #f0f0f0;             /* Texto principal (branco) */
-            --grey-detail: #a9b4c2;          /* Texto secundário (cinza-azulado) */
+            --primary-color: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --info-color: #007bff; /* Cor para botões de informação/backup */
 
-            /* Cores de Ação */
-            --info-color: #007bff;             /* Botões de backup (azul brilhante) */
-            --danger-color: #f72585;           /* Botões de perigo (rosa/vermelho) */
-            --success-color: #4cc9f0;           /* Cor de sucesso e gradiente (azul claro) */
-            --warning-color: var(--gold-dark);  /* Cor de aviso (usa o dourado escuro) */
+            /* New Gold and Black Scheme */
+            --gold-light: #FFD700;    /* Pure Gold */
+            --gold-dark: #DAA520;     /* Goldenrod */
+            --dark-background: #1a1a1a; /* Soft Black */
+            --dark-detail: #2c2c2c; /* Dark Grey for elements */
+            --light-text: #f0f0f0; /* Off-white for readability */
+            --grey-detail: #888; /* Lighter grey for minor details */
 
-            /* Propriedades da UI */
+            --danger-color: #f72585;
+            --success-color: #4cc9f0;
+            --warning-color: #f8961e;
+
             --border-radius: 12px;
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
@@ -43,7 +43,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--blue-bg-dark); /* MODIFICADO */
+            background-color: var(--dark-background);
             color: var(--light-text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -68,10 +68,13 @@
 
         /* INÍCIO: Modificações para a borda degradê no card */
         .card {
+            /* Propriedades originais (background-color movido para ::before) */
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             padding: 24px;
             margin-bottom: 24px;
+
+            /* Novas propriedades para a borda degradê */
             position: relative;
             z-index: 1;
             border: 3px solid transparent;
@@ -81,6 +84,7 @@
             overflow: hidden;
         }
 
+        /* Pseudo-elemento para o fundo sólido dentro da borda degradê */
         .card::before {
             content: '';
             position: absolute;
@@ -88,10 +92,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--blue-bg-medium); /* MODIFICADO */
+            background: #333; /* Cor de fundo original do card */
             z-index: -1;
             border-radius: var(--border-radius);
         }
+        /* FIM: Modificações para a borda degradê no card */
 
         h1, h2, h3, h4 {
             color: var(--gold-light);
@@ -131,31 +136,33 @@
             font-size: 0.95rem;
         }
 
+        /* CSS for highlighting labels */
         .highlight-label {
             font-weight: bold;
-            color: var(--gold-light);
+            color: var(--gold-light); /* Using the defined gold color */
         }
 
+        /* CSS for the Saldo Remanescente note rectangle */
         .saldo-remanescente-note {
             display: block;
             margin-top: 8px;
             padding: 8px;
             border: 1px solid var(--gold-light);
             border-radius: var(--border-radius);
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: var(--dark-detail);
             font-size: 0.9rem;
-            color: var(--light-text); /* MODIFICADO */
-            word-wrap: break-word;
+            color: var(--light-text);
+            word-wrap: break-word; /* Ensure text wraps */
         }
 
         .form-control {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid var(--blue-border); /* MODIFICADO */
+            border: 1px solid #555;
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
-            background-color: var(--blue-bg-light); /* MODIFICADO */
+            background-color: #444;
             color: var(--light-text);
             -webkit-appearance: none;
         }
@@ -173,7 +180,7 @@
         }
 
         .result-card {
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: var(--dark-detail);
             border-radius: var(--border-radius);
             padding: 16px;
             margin-top: 16px;
@@ -185,9 +192,9 @@
             margin: 8px 0;
             font-size: 1rem;
         }
-
+         /* Adjust result card paragraph containing the note */
         .result-card p:has(.saldo-remanescente-note) {
-             margin-bottom: 0;
+             margin-bottom: 0; /* Reduce space if a note follows */
         }
 
         .result-card strong {
@@ -196,7 +203,7 @@
 
         .divider {
             height: 1px;
-            background-color: var(--blue-border); /* MODIFICADO */
+            background-color: #555;
             margin: 24px 0;
             border: none;
         }
@@ -214,22 +221,20 @@
             transition: var(--transition);
             border: none;
             width: 100%;
-            margin-bottom: 12px;
+            margin-bottom: 12px; /* Default margin, can be overridden */
         }
-
-        .btn.btn-auto-width {
+        .btn.btn-auto-width { /* Nova classe para botões com largura automática */
             width: auto;
-            padding: 12px;
-            flex-shrink: 0;
+            padding: 12px; /* Ajusta padding para botões só com ícone */
+            flex-shrink: 0; /* Impede que o botão encolha */
         }
-
-        .btn-auto-width i {
-             margin-right: 0 !important;
+         .btn-auto-width i {
+             margin-right: 0 !important; /* Remover margem do ícone para botões só com ícone */
          }
 
         .btn-primary {
             background-color: var(--gold-light);
-            color: var(--blue-bg-dark); /* MODIFICADO - Texto mais escuro para o dourado */
+            color: var(--dark-background);
         }
 
         .btn-primary:hover {
@@ -238,12 +243,12 @@
         }
 
         .btn-secondary {
-            background-color: var(--blue-bg-light); /* MODIFICADO */
+            background-color: #555;
             color: var(--light-text);
         }
 
         .btn-secondary:hover {
-            background-color: var(--blue-border); /* MODIFICADO */
+            background-color: #666;
             transform: translateY(-1px);
         }
 
@@ -261,23 +266,22 @@
             background-color: var(--success-color);
             color: white;
         }
-
         .btn-success:hover {
             background-color: #3ab7d8;
             transform: translateY(-1px);
         }
 
         .btn-warning {
-            background-color: var(--warning-color); /* MODIFICADO - Usa var */
-            color: var(--blue-bg-dark); /* MODIFICADO - Usa var */
+            background-color: var(--gold-dark);
+            color: var(--dark-background);
         }
 
         .btn-warning:hover {
-            background-color: var(--gold-light); /* MODIFICADO - Usa var */
+            background-color: var(--gold-light);
             transform: translateY(-1px);
         }
 
-        .btn-whatsapp {
+         .btn-whatsapp {
             background-color: #25D366;
             color: white;
         }
@@ -287,15 +291,13 @@
             transform: translateY(-1px);
         }
 
-        .btn-whatsapp i {
+         .btn-whatsapp i {
              margin-right: 0;
          }
-
         .btn-info {
             background-color: var(--info-color);
             color: white;
         }
-
         .btn-info:hover {
             background-color: #0056b3;
             transform: translateY(-1px);
@@ -304,16 +306,15 @@
         .btn i {
             margin-right: 8px;
         }
-
         .btn .btn-text {
             margin-left: 0px;
         }
-
+        /* Adicionado estilo para o contador de leads */
         #leadCount {
-            margin-left: 5px;
-            font-size: 0.9em;
-            font-weight: 700;
-            color: var(--gold-light);
+            margin-left: 5px; /* Espaço entre o ícone e o número */
+            font-size: 0.9em; /* Tamanho um pouco menor para o número */
+            font-weight: 700; /* Deixa o número em negrito */
+             color: var(--gold-light); /* Cor para destacar a contagem */
         }
 
         .btn-group {
@@ -322,64 +323,61 @@
             gap: 12px;
             margin-top: 24px;
         }
-
-        .backup-btn-group {
+        .backup-btn-group { /* Especificidade para o grupo de backup */
             margin-top: 12px;
         }
-
+        /* Container para os botões Leads, Nova Simulação e Calculadora */
         .top-button-container {
             display: flex;
-            gap: 10px;
-            justify-content: flex-end;
+            gap: 10px; /* Espaço entre os botões */
+            justify-content: flex-end; /* Alinhar os botões à direita */
             align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            margin-bottom: 20px; /* Espaço antes do primeiro campo do formulário */
+            flex-wrap: wrap; /* Permite que os botões quebrem linha em telas pequenas */
         }
-
+         /* Alinhar o botão de Leads à esquerda e os outros à direita */
         .top-button-container #btnAbrirListaLeads {
-            margin-right: auto;
+            margin-right: auto; /* Empurra este botão para a esquerda */
         }
-
         .top-button-container .btn {
-            margin-bottom: 0;
+            margin-bottom: 0; /* Remove margem inferior dos botões dentro deste container */
         }
-
-        .top-button-container .btn-calculator {
-             display: inline-flex;
+         /* Ajuste específico para o link da calculadora para parecer um botão */
+         .top-button-container .btn-calculator {
+             display: inline-flex; /* Permite alinhar o ícone e texto (se houver) */
              align-items: center;
              justify-content: center;
-             padding: 12px;
+             padding: 12px; /* Mesmo padding dos botões de ícone único */
              border-radius: var(--border-radius);
              font-weight: 500;
              font-size: 1rem;
              text-align: center;
              cursor: pointer;
              transition: var(--transition);
-             border: none;
-             text-decoration: none;
-             width: auto;
-             flex-shrink: 0;
+             border: none; /* Remove a borda padrão de link */
+             text-decoration: none; /* Remove sublinhado padrão de link */
+             width: auto; /* Largura automática */
+             flex-shrink: 0; /* Impede que o botão encolha */
+             /* Estilos de cor e fundo para combinar com o botão primário (Nova Simulação) */
              background-color: var(--gold-light);
-             color: var(--blue-bg-dark); /* MODIFICADO */
+             color: var(--dark-background);
          }
-
          .top-button-container .btn-calculator:hover {
               background-color: var(--gold-dark);
              transform: translateY(-1px);
          }
-
          .top-button-container .btn-calculator i {
-              margin-right: 0;
+              margin-right: 0; /* Remover margem direita do ícone */
          }
 
         .history-section {
             margin-top: 32px;
             padding-top: 24px;
-            border-top: 1px solid var(--blue-border); /* MODIFICADO */
+            border-top: 1px solid #555;
         }
 
         .history-item {
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: #333;
             border-radius: var(--border-radius);
             padding: 20px;
             margin-bottom: 16px;
@@ -406,14 +404,14 @@
          .history-item .note-content {
              margin-top: 12px;
              padding-top: 12px;
-             border-top: 1px solid var(--blue-border); /* MODIFICADO */
+             border-top: 1px solid #555;
              font-style: italic;
-             color: var(--grey-detail); /* MODIFICADO */
+             color: var(--grey-detail);
          }
 
         .history-item .badge {
             background-color: var(--gold-light);
-            color: var(--blue-bg-dark); /* MODIFICADO */
+            color: var(--dark-background);
             padding: 4px 8px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -436,12 +434,12 @@
         .empty-state {
             text-align: center;
             padding: 40px 20px;
-            color: var(--grey-detail); /* MODIFICADO */
+            color: var(--grey-detail);
         }
 
         .empty-state i {
             font-size: 2.5rem;
-            color: var(--blue-border); /* MODIFICADO */
+            color: #555;
             margin-bottom: 16px;
         }
 
@@ -452,7 +450,7 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: var(--dark-detail);
             color: var(--gold-light);
             display: flex;
             align-items: center;
@@ -467,7 +465,7 @@
 
         .fab:hover {
             transform: scale(1.1);
-            background-color: var(--blue-bg-light); /* MODIFICADO */
+            background-color: #444;
         }
 
         .modal {
@@ -478,7 +476,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+            z-index: 1000; /* Z-index base para modais */
             align-items: center;
             justify-content: center;
             padding: 20px;
@@ -486,12 +484,14 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        /* Adicionando ou modificando a regra para o modal de confirmação */
         #confirmationModal {
-             z-index: 1010;
+             z-index: 1010; /* Z-index mais alto para aparecer acima de outros modais (como o histórico) */
         }
 
+        /* Novo estilo para o modal de documentos */
         #documentsModal {
-            z-index: 1005;
+            z-index: 1005; /* Entre o histórico e a confirmação */
         }
 
         .modal.show {
@@ -499,7 +499,7 @@
         }
 
         .modal-content {
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: var(--dark-background);
             border-radius: var(--border-radius);
             padding: 24px;
             width: 100%;
@@ -521,7 +521,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            border-bottom: 1px solid var(--blue-border); /* MODIFICADO */
+            border-bottom: 1px solid #555;
             padding-bottom: 15px;
         }
 
@@ -535,124 +535,113 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--grey-detail); /* MODIFICADO */
+            color: var(--grey-detail);
         }
 
         #historyList {
             margin-top: 20px;
         }
 
+        /* Estilo específico para o conteúdo do modal de documentos */
         #documentsModal .document-header-info {
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Espaço para o cabeçalho da empresa */
         }
-
         #documentsModal .document-section {
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--blue-bg-light); /* MODIFICADO */
+            border-bottom: 1px solid #444;
         }
-
         #documentsModal .document-section:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-
         #documentsModal .document-section h4 {
             color: var(--gold-light);
             margin-bottom: 10px;
             font-size: 1.1rem;
         }
-
         #documentsModal .document-section ul {
             list-style-type: none;
             padding-left: 0;
         }
-
         #documentsModal .document-section ul li {
             margin-bottom: 8px;
             font-size: 0.95rem;
             display: flex;
             align-items: flex-start;
         }
-
         #documentsModal .document-section ul li i {
             margin-right: 10px;
-            color: var(--success-color);
+            color: var(--success-color); /* Ícone de check */
             font-size: 1.1rem;
-            margin-top: 2px;
+            margin-top: 2px; /* Ajuste fino */
         }
-
         #documentsModal .developer-info-modal {
             margin-top: 20px;
             font-size: 0.85rem;
-            color: var(--grey-detail); /* MODIFICADO */
+            color: var(--grey-detail);
             text-align: center;
         }
 
+        /* Botões dentro do modal de documentos */
         #documentsModal .modal-buttons {
             display: flex;
             gap: 10px;
             margin-top: 20px;
-            justify-content: space-around;
+            justify-content: space-around; /* Distribui os botões */
         }
-
         #documentsModal .modal-buttons .btn {
-            flex-grow: 1;
-            width: auto;
-            margin-bottom: 0;
+            flex-grow: 1; /* Permite que os botões cresçam */
+            width: auto; /* Anula o width: 100% padrão do .btn */
+            margin-bottom: 0; /* Remove a margem inferior padrão */
         }
-
         #documentsModal .modal-buttons .btn i {
-            margin-right: 5px;
+            margin-right: 5px; /* Adiciona uma pequena margem ao ícone */
         }
 
+        /* Estilos para os novos campos editáveis no modal de documentos */
         #documentsModal .editable-header-info {
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: var(--dark-detail);
             border-radius: var(--border-radius);
             padding: 15px;
             margin-bottom: 20px;
             color: var(--light-text);
         }
-
         #documentsModal .editable-header-info .form-group {
             margin-bottom: 15px;
         }
-
         #documentsModal .editable-header-info .form-group:last-child {
             margin-bottom: 0;
         }
-
         #documentsModal .editable-header-info label {
             font-size: 0.9rem;
-            font-weight: normal;
-            color: var(--grey-detail); /* MODIFICADO */
+            font-weight: normal; /* Labels padrão */
+            color: var(--grey-detail);
         }
-
         #documentsModal .editable-header-info input.form-control {
-            padding: 10px 12px;
-            font-size: 0.95rem;
-            background-color: var(--blue-bg-light); /* MODIFICADO */
+            padding: 10px 12px; /* Padding menor */
+            font-size: 0.95rem; /* Fonte menor */
+            background-color: #383838; /* Um pouco mais claro que o fundo do bloco */
         }
 
+        /* Estilo para o seletor de profissão */
         #documentsModal .profession-selector {
             margin-bottom: 20px;
         }
-
         #documentsModal .profession-selector label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
             color: var(--light-text);
         }
-
         #documentsModal .profession-selector select {
             width: 100%;
             padding: 12px 16px;
-            border: 1px solid var(--blue-border); /* MODIFICADO */
+            border: 1px solid #555;
             border-radius: var(--border-radius);
             font-size: 1rem;
-            background-color: var(--blue-bg-light); /* MODIFICADO */
+            background-color: #444;
             color: var(--light-text);
             -webkit-appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -660,7 +649,6 @@
             background-position: right 12px center;
             background-size: 16px;
         }
-
         #documentsModal .profession-selector select:focus {
             border-color: var(--gold-light);
             outline: none;
@@ -707,30 +695,35 @@
                  grid-template-columns: 1fr;
                  gap: 8px;
              }
+             /* Ajustes para telas menores para o top-button-container */
              .top-button-container {
-                 flex-direction: row;
-                 gap: 5px;
-                 justify-content: space-around;
-                 flex-wrap: wrap;
+                 flex-direction: row; /* Manter os botões lado a lado */
+                 gap: 5px; /* Reduzir o espaço entre os botões em mobile, se necessário */
+                 justify-content: space-around; /* Distribuir espaço entre os botões */
+                 flex-wrap: wrap; /* Permitir que os botões quebrem linha em telas muito estreitas */
              }
               .top-button-container .btn {
-                  width: auto;
-                  margin-bottom: 0;
-                  padding: 8px 10px;
+                  width: auto; /* Permitir que a largura se ajuste ao conteúdo */
+                  margin-bottom: 0; /* Garantir que não haja margem inferior desnecessária */
+                  padding: 8px 10px; /* Ajustar padding para botões em mobile se necessário */
               }
-              .btn-auto-width {
+              .btn-auto-width { /* Manter a largura automática para os botões marcados */
                   width: auto !important;
               }
+               /* Ajuste padding para botões somente com ícone em mobile - já estava ok, podemos manter ou ajustar */
               .top-button-container .btn-auto-width:not(:has(.btn-text)) {
-                  padding: 8px;
+                  padding: 8px; /* Ajustar padding para botões só com ícone em mobile */
                   width: auto !important;
               }
+               /* Ajustar o margin-right: auto para o botão de Leads para ele continuar na esquerda */
               .top-button-container #btnAbrirListaLeads {
                   margin-right: auto;
               }
+
+              /* Botões no modal de documentos em telas menores */
              #documentsModal .modal-buttons {
-                 flex-direction: column;
-                 gap: 8px;
+                 flex-direction: column; /* Empilha os botões */
+                 gap: 8px; /* Reduz o espaçamento */
              }
         }
 
@@ -739,28 +732,30 @@
                 max-width: 700px;
                 padding: 24px;
             }
-            .btn-group {
+            .btn-group { /* Geral para btn-group */
                  grid-template-columns: 1fr 1fr;
                  gap: 12px;
             }
             .btn-whatsapp i {
                  margin-right: 8px;
             }
-             #notasSection .btn-group {
+             #notasSection .btn-group { /* Específico para notas, se precisar de layout diferente */
                  grid-template-columns: 1fr 1fr;
                  gap: 12px;
              }
               .history-actions {
                 flex-direction: row;
             }
+             /* Mantém o layout horizontal para telas maiores */
             .top-button-container {
                 flex-direction: row;
                 align-items: center;
-                gap: 10px;
+                gap: 10px; /* Manter o gap horizontal */
             }
             .top-button-container .btn-auto-width {
-                 width: auto;
+                 width: auto; /* Botões com largura automática */
             }
+             /* Ajuste padding para botões somente com ícone em desktop */
              .top-button-container .btn-auto-width:not(:has(.btn-text)) {
                  padding: 12px;
                  width: auto;
@@ -775,12 +770,12 @@
             padding: 12px 24px;
             border-radius: var(--border-radius);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 2000;
+            z-index: 2000; /* Toast deve estar sempre por cima */
             opacity: 0;
             transition: transform 0.3s ease, opacity 0.3s ease;
             max-width: 90%;
             text-align: center;
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: var(--dark-detail);
             color: var(--light-text);
         }
 
@@ -798,38 +793,43 @@
             color: white;
         }
         .toast-warning {
-            background-color: var(--warning-color); /* MODIFICADO */
-            color: var(--blue-bg-dark); /* MODIFICADO */
+            background-color: var(--gold-dark);
+            color: var(--dark-background);
         }
 
         .top-links {
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-end; /* Alterado para flex-end para alinhar qualquer coisa que sobre aqui à direita */
             align-items: center;
             margin-bottom: 20px;
             padding: 0 10px;
         }
 
+        /* Estilos para o link do Blog para que ele fique no estilo do botão de impressão */
          #blogLink {
-             font-weight: bold;
-             text-decoration: none;
-             color: var(--light-text);
-             display: inline-flex;
+             font-weight: bold; /* Manter o peso da fonte se houver texto (não terá, mas por consistência) */
+             text-decoration: none; /* Remover sublinhado padrão de link */
+             color: var(--light-text); /* Cor do ícone */
+             display: inline-flex; /* Para alinhar o ícone */
              align-items: center;
              justify-content: center;
-             padding: 12px;
-             border-radius: var(--border-radius);
+             padding: 12px; /* Mesmo padding dos botões de ícone único */
+             border-radius: var(--border-radius); /* Mesmo border-radius */
              cursor: pointer;
-             transition: var(--transition);
+             transition: var(--transition); /* Mesma transição de hover */
+
+             /* Configuração da borda e background para o degradê (copiado de btnImprimirSimulacao) */
              position: relative;
              z-index: 1;
              border: 2px solid transparent;
+             /* Usar o mesmo degradê do botão de imprimir */
              background: linear-gradient(to right, var(--gold-light), var(--success-color), var(--gold-light)) border-box;
              background-size: 200% auto;
              animation: gradientBorder 3s linear infinite;
              overflow: hidden;
          }
 
+         /* Pseudo-elemento para o fundo sólido por baixo da borda degradê do blog */
          #blogLink::before {
              content: '';
              position: absolute;
@@ -837,29 +837,29 @@
              left: 0;
              right: 0;
              bottom: 0;
-             background: var(--blue-bg-medium); /* MODIFICADO */
-             z-index: -1;
-             border-radius: var(--border-radius);
+             background: var(--dark-detail); /* Cor de fundo similar aos outros botões */
+             z-index: -1; /* Fita por baixo do conteúdo (ícone) */
+             border-radius: var(--border-radius); /* Mantém os cantos arredondados */
          }
 
          #blogLink:hover {
-             transform: translateY(-1px);
-             text-decoration: none;
+             transform: translateY(-1px); /* Mesmo efeito de hover */
+             text-decoration: none; /* Garantir que não sublinhe no hover */
          }
 
          #blogLink i {
-             margin-right: 0;
-             color: var(--light-text);
+             margin-right: 0; /* Remover margem do ícone */
+             color: var(--light-text); /* Garantir a cor do ícone */
          }
 
          .footer {
             margin-top: 40px;
             padding: 30px 20px;
-            background-color: var(--blue-bg-dark); /* MODIFICADO */
+            background-color: var(--dark-detail);
             text-align: center;
             color: var(--light-text);
             font-size: 0.9rem;
-            border-top: 1px solid var(--blue-bg-medium); /* MODIFICADO */
+            border-top: 1px solid #555;
          }
          .footer p {
              margin: 5px 0;
@@ -876,8 +876,9 @@
 
          .marquee-text {
              font-size: 0.8rem;
-             color: var(--grey-detail); /* MODIFICADO */
-             display: block;
+             color: var(--grey-detail);
+             /* Removed marquee animation and related properties */
+             display: block; /* Changed from inline-block */
          }
 
         #secaoListaLeads h2 {
@@ -887,99 +888,118 @@
         }
         #tabelaLeads {
             color: var(--light-text);
-            border: 1px solid var(--blue-border); /* MODIFICADO */
+            border: 1px solid #555;
             margin-top: 20px;
-             width: 100%;
-             display: table;
+            /* Ajuste para layout da tabela com notas */
+             width: 100%; /* Garante que a tabela ocupe o espaço disponível */
+             display: table; /* Garante que a tabela se comporte como tal */
              border-collapse: collapse;
         }
         #tabelaLeads th, #tabelaLeads td {
-            border: 1px solid var(--blue-border); /* MODIFICADO */
+            border: 1px solid #555;
             padding: 10px;
             text-align: left;
-            vertical-align: top;
-            word-break: break-word;
+            vertical-align: top; /* Alinha o conteúdo da célula no topo */
+            word-break: break-word; /* Quebra palavras longas se necessário */
+             /* Torna as células flexíveis */
             flex-grow: 1;
             flex-basis: 0;
         }
-         #tabelaLeads th:nth-child(1) { width: 10%; }
-         #tabelaLeads th:nth-child(2) { width: 10%; }
-         #tabelaLeads th:nth-child(3) { width: 10%; }
-         #tabelaLeads th:nth-child(4) { width: 8%; }
-         #tabelaLeads th:nth-child(5) { width: 8%; }
-         #tabelaLeads th:nth-child(6) { width: 8%; }
-         #tabelaLeads th:nth-child(7) { width: 8%; }
-         #tabelaLeads th:nth-child(8) { width: 12%; }
-         #tabelaLeads th:nth-child(9) { width: 18%; text-align: left;}
-         #tabelaLeads th:nth-child(10) { width: 8%; text-align: center;}
+         /* Ajuste as larguras das colunas */
+         #tabelaLeads th:nth-child(1) { width: 10%; } /* Nome */
+         #tabelaLeads th:nth-child(2) { width: 10%; } /* Telefone */
+         #tabelaLeads th:nth-child(3) { width: 10%; } /* Imóvel */
+         #tabelaLeads th:nth-child(4) { width: 8%; } /* Data */
+         /* Novas Colunas */
+         #tabelaLeads th:nth-child(5) { width: 8%; } /* Subsídio */
+         #tabelaLeads th:nth-child(6) { width: 8%; } /* Financiado */
+         #tabelaLeads th:nth-child(7) { width: 8%; } /* FGTS */
+         /* Colunas Existentes */
+         #tabelaLeads th:nth-child(8) { width: 12%; } /* Notas */
+         #tabelaLeads th:nth-child(9) { width: 18%; text-align: left;} /* Observações */
+         #tabelaLeads th:nth-child(10) { width: 8%; text-align: center;} /* Ações */
 
         #tabelaLeads th {
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: var(--dark-detail);
             color: var(--gold-light);
         }
         #tabelaLeads tbody tr:nth-child(even) {
-            background-color: var(--blue-bg-medium); /* MODIFICADO */
+            background-color: #2c2c2c;
         }
         #tabelaLeads tbody tr:hover {
-            background-color: var(--blue-bg-light); /* MODIFICADO */
+            background-color: #444;
         }
         #tabelaLeads .btn-danger i {
             margin-right: 0;
         }
 
+        /* CSS for Spin Animation */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        #btnNovaSimulacao i.fas.fa-sync-alt {
+        #btnNovaSimulacao i.fas.fa-sync-alt { /* Apply animation to the icon */
             animation: spin 2s linear infinite;
         }
 
+        /* Adicionar Animação para o Ícone Piscar (do botão Leads) */
         @keyframes iconBlink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+            0%, 100% { opacity: 1; } /* Totalmente visível no início e fim */
+            50% { opacity: 0.3; } /* Menos visível no meio */
         }
 
+        /* Adicionar Animação para a Borda Brilhar (do botão Leads) */
         @keyframes borderGlow {
             0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.4), 0 0 10px rgba(255, 215, 0, 0.2); border-color: var(--gold-light); }
             50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.4); border-color: var(--gold-dark); }
         }
 
+        /* Adicionar Animação para a Borda em Degradê (para o botão Imprimir, Simulador Caixa e Blog) */
         @keyframes gradientBorder {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
+        /* Aplicar as Animações ao Botão Leads e seu Ícone */
         #btnAbrirListaLeads {
-             animation: borderGlow 2s infinite alternate;
-             border: 2px solid transparent;
-             padding: 10px;
-             position: relative;
-             z-index: 1;
-             background-clip: padding-box;
+            /* Manter estilos existentes */
+            /* .btn.btn-auto-width */
+             animation: borderGlow 2s infinite alternate; /* Aplicar a animação da borda */
+             border: 2px solid transparent; /* Adicionar uma borda transparente para animar */
+             /* padding ajustado para levar em conta a nova borda */
+             padding: 10px; /* Ajusta padding para botões só com ícone */
+             position: relative; /* Necessário para o pseudo-elemento ou para garantir z-index */
+             z-index: 1; /* Garante que o botão esteja acima de elementos de fundo */
+             background-clip: padding-box; /* Impede que o background do degradê preencha o botão */
+             /* Adicionado display flex para alinhar ícone e contador */
              display: flex;
              align-items: center;
              justify-content: center;
         }
 
         #btnAbrirListaLeads i {
-            animation: iconBlink 1.5s infinite alternate;
-             margin-right: 5px;
+            animation: iconBlink 1.5s infinite alternate; /* Aplicar a animação de piscar ao ícone */
+             margin-right: 5px; /* Adicionar um pequeno espaço entre o ícone e o contador */
         }
-
+        /* Remover margem do ícone em mobile se btn-auto-width for apenas ícone - ajustado abaixo */
         @media (max-width: 768px) {
              .top-button-container .btn-auto-width#btnAbrirListaLeads i {
-                 margin-right: 5px !important;
+                 margin-right: 5px !important; /* Manter um pequeno espaço em mobile também */
              }
         }
 
+        /* Aplicar Animação de Borda Degradê ao Botão de Imprimir */
         #btnImprimirSimulacao {
+             /* Manter estilos existentes */
+             /* .btn.btn-auto-width */
              position: relative;
              z-index: 1;
              padding: 10px;
              overflow: hidden;
+
+             /* Configuração da borda e background para o degradê */
              border: 2px solid transparent;
              background: linear-gradient(to right, var(--gold-light), var(--success-color), var(--gold-light)) border-box;
              background-size: 200% auto;
@@ -993,16 +1013,18 @@
              left: 0;
              right: 0;
              bottom: 0;
-             background: var(--blue-bg-medium); /* MODIFICADO */
-             z-index: -1;
-             border-radius: var(--border-radius);
+             background: var(--dark-detail); /* Cor de fundo do botão por cima do degradê */
+             z-index: -1; /* Fita por baixo do conteúdo (ícone) */
+             border-radius: var(--border-radius); /* Mantém os cantos arredondados */
         }
 
+        /* Ajustes para o ícone dentro do botão de imprimir */
         #btnImprimirSimulacao i {
-              margin-right: 0 !important;
-              color: var(--light-text);
+              margin-right: 0 !important; /* Garantir que não tenha margem */
+              color: var(--light-text); /* Cor do ícone para contrastar com o fundo */
         }
 
+        /* Novo estilo para o botão de documentos */
         #btnDocumentos {
              position: relative;
              z-index: 1;
@@ -1021,9 +1043,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--blue-bg-medium); /* MODIFICADO */
-            z-index: -1;
-            border-radius: var(--border-radius);
+            background: var(--dark-detail); /* Cor de fundo do botão por cima do degradê */
+            z-index: -1; /* Fita por baixo do conteúdo (ícone) */
+            border-radius: var(--border-radius); /* Mantém os cantos arredondados */
         }
 
         #btnDocumentos i {
@@ -1031,35 +1053,7 @@
             color: var(--light-text);
         }
 
-        /* --- NOVO: Estilo para o botão Baixar PDF --- */
-        #btnBaixarSimulacaoPdf {
-             position: relative;
-             z-index: 1;
-             padding: 10px;
-             overflow: hidden;
-             border: 2px solid transparent;
-             background: linear-gradient(to right, var(--gold-light), var(--success-color), var(--gold-light)) border-box;
-             background-size: 200% auto;
-             animation: gradientBorder 3s linear infinite;
-        }
-
-        #btnBaixarSimulacaoPdf::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--blue-bg-medium); /* MODIFICADO */
-            z-index: -1;
-            border-radius: var(--border-radius);
-        }
-
-        #btnBaixarSimulacaoPdf i {
-            margin-right: 0 !important;
-            color: var(--light-text);
-        }
-
+        /* Classe para esconder elementos na tela, mas mostrar na impressão */
         .print-only {
             display: none;
         }
@@ -1125,100 +1119,86 @@
             /* NOVO: Layout horizontal moderno para impressão */
             .print-header {
                 text-align: center;
-                margin-bottom: 20px;
-                font-size: 1.6rem;
+                margin-bottom: 15px;
+                font-size: 1.4rem;
                 font-weight: bold;
                 text-transform: uppercase;
-                color: #2c3e50;
-                border-bottom: 3px solid #3498db;
-                padding-bottom: 15px;
-                letter-spacing: 1px;
+                color: #333;
+                border-bottom: 2px solid #333;
+                padding-bottom: 10px;
             }
 
             .print-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 15px;
-                margin-bottom: 25px;
+                margin-bottom: 20px;
             }
 
             .print-section {
-                background-color: #f8f9fa;
-                border-radius: 10px;
-                padding: 18px;
-                border: 1px solid #e9ecef;
-                box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                 page-break-inside: avoid;
-                transition: all 0.3s ease;
-            }
-
-            .print-section:hover {
-                box-shadow: 0 5px 12px rgba(0,0,0,0.12);
-                transform: translateY(-2px);
             }
 
             .print-section h3 {
-                font-size: 1.2rem;
-                color: #2c3e50;
-                margin-bottom: 15px;
-                padding-bottom: 8px;
-                border-bottom: 2px solid #3498db;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
+                font-size: 1.1rem;
+                color: #333;
+                margin-bottom: 12px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #ddd;
+                font-weight: 600;
             }
 
             .print-section p {
-                margin: 10px 0;
-                font-size: 0.95rem;
+                margin: 8px 0;
+                font-size: 0.9rem;
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
-                padding: 4px 0;
             }
 
             .print-section strong {
-                color: #2c3e50;
+                color: #333;
                 font-weight: 600;
-                flex: 1;
             }
 
             .print-section .value {
-                font-weight: 700;
-                color: #e74c3c;
+                font-weight: 600;
+                color: #000;
                 text-align: right;
-                flex: 1;
-                font-size: 1rem;
             }
 
             .print-section.highlight {
-                background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-                border: 2px solid #3498db;
+                background-color: #f0f8ff;
+                border: 1px solid #4cc9f0;
             }
 
             .print-section.highlight h3 {
-                color: #2980b9;
-                border-bottom-color: #2980b9;
+                color: #4cc9f0;
+                border-bottom-color: #4cc9f0;
             }
 
             .print-section.warning {
-                background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%);
-                border: 2px solid #e67e22;
+                background-color: #fffaf0;
+                border: 1px solid #f8961e;
             }
 
             .print-section.warning h3 {
-                color: #e67e22;
-                border-bottom-color: #e67e22;
+                color: #f8961e;
+                border-bottom-color: #f8961e;
             }
 
             .print-section.success {
-                background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
-                border: 2px solid #27ae60;
+                background-color: #f0fff4;
+                border: 1px solid #4cc9f0;
             }
 
             .print-section.success h3 {
-                color: #27ae60;
-                border-bottom-color: #27ae60;
+                color: #4cc9f0;
+                border-bottom-color: #4cc9f0;
             }
 
             .print-section.full-width {
@@ -1227,49 +1207,40 @@
 
             .print-notes {
                 background-color: #fff;
-                border: 2px dashed #bdc3c7;
+                border: 1px dashed #999;
                 border-radius: 8px;
-                padding: 18px;
+                padding: 15px;
                 margin-top: 15px;
                 min-height: 120px;
-                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             }
 
             .print-notes h4 {
-                font-size: 1.1rem;
-                color: #2c3e50;
-                margin-bottom: 12px;
-                font-weight: 700;
-                text-transform: uppercase;
+                font-size: 1rem;
+                color: #333;
+                margin-bottom: 10px;
+                font-weight: 600;
             }
 
             .print-footer {
-                 margin-top: 40px;
-                 padding-top: 25px;
-                 border-top: 3px solid #3498db;
+                 margin-top: 30px;
+                 padding-top: 20px;
+                 border-top: 1px solid #ccc;
                  font-size: 0.9rem;
                  color: #000;
                  page-break-before: avoid;
-                 background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-                 border-radius: 10px;
-                 padding: 25px;
              }
-
             .print-footer .footer-info {
                  display: flex;
                  justify-content: space-between;
-                 margin-bottom: 40px;
+                 margin-bottom: 30px;
                  padding: 0 20px;
                  flex-wrap: wrap;
-                 gap: 25px;
+                 gap: 20px;
              }
 
              .print-footer .footer-info span {
                  flex-grow: 1;
                  flex-basis: 0;
-                 font-weight: 600;
-                 color: #2c3e50;
-                 font-size: 1rem;
              }
              .print-footer .footer-info span:last-child {
                  flex-grow: 0;
@@ -1283,8 +1254,7 @@
                  align-items: flex-start;
                  padding: 0 20px;
                  flex-wrap: wrap;
-                 gap: 40px;
-                 margin-top: 30px;
+                 gap: 30px;
              }
 
             .print-footer .signature-block {
@@ -1296,32 +1266,18 @@
                  box-sizing: border-box;
                  flex-grow: 1;
                  flex-basis: 0;
-                 padding: 20px;
-                 background: white;
-                 border-radius: 8px;
-                 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
+             }
 
             .print-footer .signature-line {
                 display: block;
                 width: 100%;
-                border-top: 2px solid #34495e;
-                margin-bottom: 10px;
-                margin-top: 40px;
+                border-top: 1px solid #000;
+                margin-bottom: 5px;
             }
 
             .print-footer .signature-block p {
-                margin: 8px 0 0 0;
-                font-size: 1rem;
-                font-weight: 600;
-                color: #2c3e50;
-            }
-
-            /* Removendo informações desnecessárias após as assinaturas */
-            .print-footer .developer-info,
-            .print-footer .whatsapp-icon,
-            .print-footer .marquee-text {
-                display: none !important;
+                margin: 0;
+                font-size: 0.9rem;
             }
 
              @media print and (max-width: 400px) {
@@ -1332,7 +1288,7 @@
                  .print-footer .footer-info,
                  .print-footer .signature-area {
                      flex-direction: column;
-                     gap: 20px;
+                     gap: 15px;
                      padding: 0;
                  }
                  .print-footer .footer-info span,
@@ -1344,34 +1300,94 @@
                      text-align: left;
                   }
              }
+        }
 
-            /* Melhorias na paleta de cores */
-            .print-section:nth-child(odd) {
-                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-                border-left: 4px solid #3498db;
-            }
+        /* --- Estilos para Impressão do MODAL DE DOCUMENTOS (PDF) --- */
+        /* Esta classe será 'ativada' pela função html2canvas para gerar o PDF */
+        .documents-print-layout {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            padding: 15mm 20mm !important; /* Margens: 15mm top/bottom, 20mm left/right */
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            width: auto !important;
+            max-width: none !important;
+            margin: 0 !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
 
-            .print-section:nth-child(even) {
-                background: linear-gradient(135deg, #ffffff 0%, #f1f8fe 100%);
-                border-left: 4px solid #e74c3c;
-            }
+        .documents-print-layout .modal-header,
+        .documents-print-layout .modal-buttons,
+        .documents-print-layout .developer-info-modal,
+        .documents-print-layout .editable-header-info /* Esconde os campos de edição no PDF */ {
+            display: none !important;
+        }
 
-            .print-section.highlight {
-                background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-                border-left: 4px solid #1565c0;
-            }
+        /* Título Principal no PDF (Documentos para Simulação) */
+        .documents-print-layout h3 {
+            font-size: 1.5rem !important; /* Um pouco menor para caber */
+            color: #333333 !important;
+            text-align: center !important;
+            margin-bottom: 15px !important; /* Espaço menor */
+            padding-bottom: 0 !important;
+            border-bottom: none !important;
+            line-height: 1.2 !important; /* Diminui o espaçamento de linha */
+        }
 
-            .value.positive {
-                color: #27ae60;
-            }
+        /* Informações do cabeçalho da empresa no PDF */
+        .documents-print-layout .document-header-info {
+            margin-bottom: 20px !important; /* Ajusta a margem do bloco */
+            /* Garante que o texto seja centralizado, como no PDF original */
+            text-align: center !important;
+        }
+        .documents-print-layout .document-header-info h2 {
+            font-size: 1.2rem !important; /* Ajusta o tamanho da fonte */
+            margin-bottom: 5px !important; /* Reduz margem */
+            color: #000000 !important; /* Preto */
+            line-height: 1.1 !important;
+        }
+        .documents-print-layout .document-header-info p {
+            font-size: 0.8rem !important; /* Texto menor */
+            margin-bottom: 10px !important; /* Reduz margem */
+            color: #333333 !important; /* Cinza escuro */
+            line-height: 1.1 !important;
+        }
 
-            .value.negative {
-                color: #e74c3c;
-            }
+        .documents-print-layout .document-section {
+            margin-bottom: 20px !important; /* Espaço menor entre seções */
+            padding-bottom: 10px !important; /* Espaço menor */
+            border-bottom: 1px dashed #dddddd !important; /* Borda mais clara e suave */
+        }
+        .documents-print-layout .document-section:last-child {
+            border-bottom: none !important;
+        }
 
-            .value.neutral {
-                color: #7f8c8d;
-            }
+        .documents-print-layout .document-section h4 {
+            font-size: 1.05rem !important; /* Títulos de seção um pouco menores */
+            color: #444444 !important; /* Cinza escuro */
+            margin-bottom: 10px !important; /* Espaço menor */
+            font-weight: bold !important;
+            text-transform: uppercase;
+            line-height: 1.2 !important; /* Diminui o espaçamento de linha */
+        }
+
+        .documents-print-layout .document-section ul li {
+            font-size: 0.9rem !important; /* Texto da lista menor */
+            margin-bottom: 5px !important; /* Espaço entre itens da lista */
+            color: #111111 !important; /* Texto mais escuro */
+            line-height: 1.2 !important; /* Diminui o espaçamento de linha */
+            display: flex;
+            align-items: flex-start; /* Garante que o texto comece na mesma linha do ícone */
+        }
+
+        .documents-print-layout .document-section ul li i {
+            color: #006400 !important; /* Verde mais escuro e sólido para o ícone */
+            margin-right: 8px !important; /* Reduz o espaço para o ícone */
+            font-size: 1rem !important; /* Ícone do tamanho do texto */
+            flex-shrink: 0; /* Impede que o ícone encolha */
+            padding-top: 1px; /* Ajuste fino para alinhar o ícone com o texto */
         }
 
         /* --- ESTILOS DO EFEITO DE FESTA (BALÕES E CONFETES) --- */
@@ -1381,16 +1397,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9999;
-            pointer-events: none;
-            overflow: hidden;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999; /* Garante que fique acima de tudo */
+            pointer-events: none; /* Permite clicar através da overlay */
+            overflow: hidden; /* Esconde elementos que saem da tela */
+            opacity: 0; /* Inicialmente invisível */
+            transition: opacity 0.5s ease; /* Transição suave na visibilidade */
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
         }
 
         #partyEffectContainer.show {
-            opacity: 1;
+            opacity: 1; /* Torna visível */
         }
 
         #partyMessage {
@@ -1399,30 +1415,32 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: 2.5em;
+            font-size: 2.5em; /* Tamanho do texto */
             font-weight: bold;
             text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            z-index: 10;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para destacar o texto */
+            z-index: 10; /* Acima dos balões/confetes */
+            opacity: 0; /* Inicialmente invisível */
+            transition: opacity 0.5s ease; /* Transição suave */
         }
 
          #partyEffectContainer.show #partyMessage {
-             opacity: 1;
+             opacity: 1; /* Torna o texto visível quando o container é exibido */
          }
 
+        /* Estilos para Balões */
         .balloon {
             position: absolute;
-            bottom: -100px;
-            width: 50px;
-            height: 60px;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            bottom: -100px; /* Começa abaixo da tela */
+            width: 50px; /* Tamanho do balão */
+            height: 60px; /* Tamanho do balão */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Formato de balão */
             opacity: 0.8;
-            animation: floatUp 10s ease-in infinite;
-            z-index: 1;
+            animation: floatUp 10s ease-in infinite; /* Animação de flutuar */
+            z-index: 1; /* Abaixo do texto */
         }
 
+        /* Pseudo-elemento para a "cauda" do balão */
         .balloon::after {
             content: '';
             position: absolute;
@@ -1430,10 +1448,11 @@
             left: 50%;
             transform: translateX(-50%);
             width: 1px;
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.5);
+            height: 20px; /* Comprimento da cauda */
+            background-color: rgba(255, 255, 255, 0.5); /* Cor da cauda */
         }
 
+        /* Animação de flutuar para os balões */
         @keyframes floatUp {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -1449,23 +1468,25 @@
             }
         }
 
+        /* Estilos para Confetes */
         .confetti {
             position: absolute;
-            width: 8px;
-            height: 12px;
-            background-color: white;
+            width: 8px; /* Tamanho do confete */
+            height: 12px; /* Tamanho do confete */
+            background-color: white; /* Cor padrão (será sobrescrita) */
             opacity: 0.7;
-            animation: fallAndRotate 8s linear infinite;
-            z-index: 0;
+            animation: fallAndRotate 8s linear infinite; /* Animação de cair e girar */
+            z-index: 0; /* Abaixo dos balões */
         }
 
+        /* Animação de cair e girar para os confetes */
         @keyframes fallAndRotate {
             0% {
                 transform: translateY(0) rotate(0deg);
                 opacity: 0.7;
             }
             100% {
-                transform: translateY(110vh) rotate(720deg);
+                transform: translateY(110vh) rotate(720deg); /* Cai e gira duas vezes */
                 opacity: 0.5;
             }
         }
@@ -1500,10 +1521,9 @@
                  <a href="https://dinheiroeplanejamento.blogspot.com/2025/04/guia-completo-para-corretores-de.html" target="_blank" id="blogLink" title="Acesse o Blog">
                      <i class="fas fa-book"></i>
                  </a>
-                 
-                <button id="btnBaixarSimulacaoPdf" class="btn btn-secondary btn-auto-width" title="Imprimir PDF">
-    <i class="fas fa-print"></i>
-</button>
+                 <button id="btnImprimirSimulacao" class="btn btn-secondary btn-auto-width" title="Imprimir Simulação">
+                    <i class="fas fa-print"></i>
+                </button>
             </div>
 
             <div class="form-group" id="form-group-nomeEmpreendimento">
@@ -1924,14 +1944,12 @@
         const currencyInputs = document.querySelectorAll('.currency-input');
         const btnNovaSimulacao = document.getElementById('btnNovaSimulacao');
         const btnExportarBackup = document.getElementById('btnExportarBackup');
-        const btnImportarBackup = document.getElementById('btnImportarBackup');
+        const btnImportarBackup = document.getElementById('btnImportarBackup'); // Mudança aqui
         const importFileInput = document.getElementById('importFile');
         const blogLink = document.getElementById('blogLink');
 
-        // Botões de impressão e PDF
+        // Novo botão de impressão
         const btnImprimirSimulacao = document.getElementById('btnImprimirSimulacao');
-        const btnBaixarSimulacaoPdf = document.getElementById('btnBaixarSimulacaoPdf');
-        
         // Elementos da lista de Leads
         const btnAbrirListaLeads = document.getElementById('btnAbrirListaLeads');
         const secaoListaLeads = document.getElementById('secaoListaLeads');
@@ -1960,10 +1978,10 @@
         const enviarDocumentosWhatsappBtn = document.getElementById('enviarDocumentosWhatsappBtn');
         const baixarDocumentosPdfBtn = document.getElementById('baixarDocumentosPdfBtn');
         const documentsModalBody = document.getElementById('documentsModalBody');
-        const pdfHeaderInfo = document.getElementById('pdfHeaderInfo');
-        const imobiliariaNomeInput = document.getElementById('imobiliariaNome');
-        const corretorNomeInput = document.getElementById('corretorNome');
-        const corretorCreciInput = document.getElementById('corretorCreci');
+        const pdfHeaderInfo = document.getElementById('pdfHeaderInfo'); // NOVO: Elemento que vai para o PDF
+        const imobiliariaNomeInput = document.getElementById('imobiliariaNome'); // NOVO: Campo de edição
+        const corretorNomeInput = document.getElementById('corretorNome');     // NOVO: Campo de edição
+        const corretorCreciInput = document.getElementById('corretorCreci');   // NOVO: Campo de edição
         // NOVO: Elemento do botão Baixar TXT no modal de documentos
         const baixarDocumentosTxtBtn = document.getElementById('baixarDocumentosTxtBtn');
         // --- FIM ELEMENTOS DO MODAL DE DOCUMENTOS ---
@@ -2176,8 +2194,8 @@
                 valorIntercaladas: formatCurrencyDisplay(cleanCurrencyFormat(valorIntercaladasInput.value)),
                 quantidadeIntercaladas: quantidadeIntercaladasInput.value,
                 totalIntercaladas: totalIntercaladasSpan.textContent,
-                notasCliente: notasClienteTextArea.value.trim(),
-                observacoesSimulacao: observacoesClienteTextArea.value.trim()
+                notasCliente: notasClienteTextArea.value.trim(), // Conteúdo da seção 'Notas do Cliente'
+                observacoesSimulacao: observacoesClienteTextArea.value.trim() // Conteúdo do NOVO campo Observações
             };
         }
 
@@ -2225,7 +2243,7 @@
             const data = getFormattedValues();
             const dataHora = new Date().toLocaleString('pt-BR');
             // Define a largura máxima para quebra de linha no TXT
-            const maxWidth = 70;
+            const maxWidth = 70; // Ajuste este valor conforme necessário
 
             let txtContent = `SIMULAÇÃO DE PLANO DE PAGAMENTO (${dataHora})
 --------------------------------------------------
@@ -2323,6 +2341,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
         }
 
         // NOVO: Função para gerar o conteúdo dos documentos como TXT
+        // Esta função já foi fornecida e está correta. Ela é a base para o TXT e WhatsApp.
         function gerarConteudoDocumentosTXT() {
             const imobiliaria = imobiliariaNomeInput.value.trim() || 'IMOBILIÁRIA';
             const corretor = corretorNomeInput.value.trim() || 'Corretor(a)';
@@ -2358,6 +2377,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
         }
 
         // NOVO: Função para baixar os documentos como TXT
+        // Esta função já foi fornecida e está correta.
         function baixarDocumentosComoTxt() {
             const textoDosDocumentos = gerarConteudoDocumentosTXT();
             const nomeClienteVal = nomeClienteInput.value.trim().replace(/\s+/g, '_') || 'Cliente';
@@ -2371,10 +2391,11 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             document.body.removeChild(link);
             URL.revokeObjectURL(link.href);
             showToast('Lista de documentos baixada como TXT!', 'success');
-            documentsModal.classList.remove('show');
+            documentsModal.classList.remove('show'); // Fecha o modal após o download
         }
 
-        // Função para gerar a mensagem de documentos para WhatsApp
+        // Função para gerar a mensagem de documentos para WhatsApp (ATUALIZADA)
+        // Agora, ela usa a mesma lógica de formatação de gerarConteudoDocumentosTXT()
         function gerarConteudoDocumentosWhatsApp() {
             const imobiliaria = imobiliariaNomeInput.value.trim() || 'IMOBILIÁRIA';
             const corretor = corretorNomeInput.value.trim() || 'Corretor(a)';
@@ -2431,7 +2452,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             let urlWhatsApp = '';
 
             if (telefoneLimpo) {
-                urlWhatsApp = `https://wa.me/55${telefoneLimpo}?text=${mensagem}`;
+                urlWhatsApp = `https://wa.me/55${telefoneLimpo}?text=${mensagem}`; // Garante o 55 na URL do WhatsApp
             } else {
                 urlWhatsApp = `https://wa.me/?text=${mensagem}`;
                 showToast('Telefone do cliente não informado. A mensagem será aberta para você escolher o contato.', 'warning', 7000);
@@ -2460,7 +2481,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             if (!newWindow) {
                 showToast('Falha ao abrir o WhatsApp. Verifique se popups estão bloqueados.', 'danger', 5000);
             } else {
-                documentsModal.classList.remove('show');
+                documentsModal.classList.remove('show'); // Fecha o modal após tentar abrir o WhatsApp
             }
         }
 
@@ -2497,13 +2518,13 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             try {
                 // Captura o conteúdo do modal-body como uma imagem (canvas)
                 const canvas = await html2canvas(documentsModalBody, {
-                    scale: 3,
-                    useCORS: true,
-                    backgroundColor: '#ffffff'
+                    scale: 3, // Aumenta a escala para melhor qualidade do PDF
+                    useCORS: true, // Importante se houver imagens externas
+                    backgroundColor: '#ffffff' // Fundo branco para o canvas
                 });
 
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgData = canvas.toDataURL('image/jpeg', 1.0); // Usar JPEG com qualidade 1.0 para otimização de tamanho e qualidade
+                const pdf = new jsPDF('p', 'mm', 'a4'); // 'p' = retrato, 'mm' = milímetros, 'a4' = tamanho da página
 
                 const pdfWidth = pdf.internal.pageSize.getWidth();
                 const pdfHeight = pdf.internal.pageSize.getHeight();
@@ -2513,7 +2534,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 const imgHeightInPdf = pdfWidth / imgRatio;
 
                 let heightLeft = imgHeightInPdf;
-                let position = 0;
+                let position = 0; // Posição inicial no PDF
 
                 // Adiciona a primeira imagem
                 pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeightInPdf);
@@ -2537,228 +2558,8 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             } finally {
                 // Remove a classe de layout de impressão e restaura o conteúdo original do cabeçalho
                 documentsModalBody.classList.remove('documents-print-layout');
-                pdfHeaderInfo.innerHTML = originalPdfHeaderContent;
+                pdfHeaderInfo.innerHTML = originalPdfHeaderContent; // Restaura o HTML original
                 documentsModal.classList.remove('show');
-            }
-        }
-
-        // NOVA FUNÇÃO: Gerar PDF da simulação com layout personalizado e elegante
-        // NOVA FUNÇÃO: Gerar PDF da simulação com layout personalizado e elegante
-        async function baixarSimulacaoComoPdf() {
-            showToast('Gerando PDF da simulação... Aguarde um momento.', 'info', 3000);
-
-            try {
-                const data = getFormattedValues();
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                
-                // Configurações iniciais com margens adequadas
-                const margin = 15;
-                let yPosition = margin;
-                const lineHeight = 6;
-                const sectionSpacing = 12;
-                
-                // --- NOVA PALETA DE CORES PROFISSIONAL (AZUL/DOURADO/CINZA) ---
-                const colors = {
-                    bgHeader: '#1b263b',    // Azul escuro (do novo UI) para cabeçalhos
-                    bgBody: '#ffffff',      // Fundo branco para conteúdo
-                    bgHighlight: '#f0f0f0', // Cinza claro para o bloco de cliente
-                    textHeader: '#FFD700',  // Dourado para texto do cabeçalho
-                    textBody: '#333333',    // Texto do corpo (preto suave)
-                    textAccent: '#DAA520',   // Dourado escuro para ênfase (Saldo)
-                    border: '#e0e0e0'       // Borda sutil
-                };
-                // --- FIM DA NOVA PALETA ---
-                
-                // Cabeçalho
-                pdf.setFillColor(colors.bgHeader); // MODIFICADO
-                pdf.rect(0, 0, 210, 25, 'F');
-                
-                pdf.setTextColor(colors.textHeader); // MODIFICADO
-                pdf.setFontSize(18);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('SIMULAÇÃO DE PLANO DE PAGAMENTO', 105, 15, { align: 'center' });
-                
-                // Reset para conteúdo principal
-                yPosition = 35;
-                
-                // Informações do Cliente - Bloco 1
-                pdf.setFillColor(colors.bgHighlight); // MODIFICADO
-                pdf.setDrawColor(colors.border); // MODIFICADO
-                pdf.roundedRect(margin, yPosition, 180, 30, 3, 3, 'DF'); // MODIFICADO
-                
-                pdf.setFontSize(14);
-                pdf.setFont('helvetica', 'bold');
-                pdf.setTextColor(colors.bgHeader); // MODIFICADO
-                pdf.text('INFORMAÇÕES DO CLIENTE', margin + 5, yPosition + 8);
-                
-                pdf.setFontSize(10);
-                pdf.setFont('helvetica', 'normal');
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                pdf.text(`Nome: ${data.nomeCliente}`, margin + 5, yPosition + 15);
-                pdf.text(`Telefone: ${data.telefoneCliente}`, margin + 5, yPosition + 20);
-                pdf.text(`Empreendimento: ${data.nomeEmpreendimento}`, margin + 5, yPosition + 25);
-                
-                yPosition += 35;
-
-                // Grid de informações - 2 colunas
-                const col1 = margin;
-                const col2 = 105;
-                const boxWidth = 85;
-                
-                // Bloco 2: Valores do Imóvel
-                pdf.setFillColor(colors.bgHeader); // MODIFICADO
-                pdf.roundedRect(col1, yPosition, boxWidth, 15, 3, 3, 'F');
-                
-                pdf.setTextColor(colors.textHeader); // MODIFICADO
-                pdf.setFontSize(11);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('VALORES DO IMÓVEL', col1 + 5, yPosition + 10);
-                
-                pdf.setFillColor(colors.bgBody); // MODIFICADO
-                pdf.setDrawColor(colors.border); // MODIFICADO
-                pdf.roundedRect(col1, yPosition + 15, boxWidth, 45, 3, 3, 'DF'); // MODIFICADO (boxHeight 45)
-                
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                pdf.setFontSize(9);
-                pdf.setFont('helvetica', 'normal');
-                let textY = yPosition + 25;
-                pdf.text(`Valor do Imóvel: ${data.valorImovel}`, col1 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Subsídio: ${data.descontoMCMV}`, col1 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Desconto Constr.: ${data.descontoConstrutora}`, col1 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`FGTS: ${data.valorFGTS}`, col1 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Financiado: ${data.valorFinanciado}`, col1 + 5, textY);
-
-                // Bloco 3: Entrada
-                pdf.setFillColor(colors.bgHeader); // MODIFICADO
-                pdf.roundedRect(col2, yPosition, boxWidth, 15, 3, 3, 'F');
-                
-                pdf.setTextColor(colors.textHeader); // MODIFICADO
-                pdf.setFontSize(11);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('ENTRADA', col2 + 5, yPosition + 10);
-                
-                pdf.setFillColor(colors.bgBody); // MODIFICADO
-                pdf.setDrawColor(colors.border); // MODIFICADO
-                pdf.roundedRect(col2, yPosition + 15, boxWidth, 57, 3, 3, 'DF'); // MODIFICADO (boxHeight 57)
-                
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                pdf.setFontSize(9);
-                pdf.setFont('helvetica', 'normal');
-                textY = yPosition + 25;
-                pdf.text(`Sinal: ${data.sinalConstrutora}`, col2 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Valor Parcelado: ${data.maximoConstrParc}`, col2 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Parcelas: ${data.parcelasEntrada}x`, col2 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Correção INCC: ${data.correcaoINCC}`, col2 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`1ª Parcela: ${data.valorParcelaEntradaInicial}`, col2 + 5, textY);
-
-                // NOVO: Adiciona a nota de rodapé pequena (Alteração anterior mantida)
-                textY += 5; // Um pequeno espaço
-                pdf.setFontSize(7); // Define a fonte bem pequena
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                
-                const notaTexto = "Nas parcelas da entrada pagas durante a obra, incidem o INCC, após a entregas das chaves incide IPCA +TR";
-                // Quebra o texto para caber (boxWidth is 85, -10 for padding)
-                const notaLines = pdf.splitTextToSize(notaTexto, 75); 
-                
-                pdf.text(notaLines, col2 + 5, textY);
-
-                yPosition += 57 + 20; // MODIFICADO (boxHeight 57)
-
-                // Bloco 4: Intercaladas
-                pdf.setFillColor(colors.bgHeader); // MODIFICADO
-                pdf.roundedRect(col1, yPosition, boxWidth, 15, 3, 3, 'F');
-                
-                pdf.setTextColor(colors.textHeader); // MODIFICADO
-                pdf.setFontSize(11);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('INTERCALADAS', col1 + 5, yPosition + 10);
-                
-                pdf.setFillColor(colors.bgBody); // MODIFICADO
-                pdf.setDrawColor(colors.border); // MODIFICADO
-                pdf.roundedRect(col1, yPosition + 15, boxWidth, 30, 3, 3, 'DF'); // MODIFICADO
-                
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                pdf.setFontSize(9);
-                pdf.setFont('helvetica', 'normal');
-                textY = yPosition + 25;
-                pdf.text(`Valor: ${data.valorIntercaladas}`, col1 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Quantidade: ${data.quantidadeIntercaladas}`, col1 + 5, textY);
-                textY += lineHeight;
-                pdf.text(`Total: ${data.totalIntercaladas}`, col1 + 5, textY);
-
-                // Bloco 5: Resumo Financeiro
-                pdf.setFillColor(colors.bgHeader); // MODIFICADO
-                pdf.roundedRect(col2, yPosition, boxWidth, 15, 3, 3, 'F');
-                
-                pdf.setTextColor(colors.textHeader); // MODIFICADO
-                pdf.setFontSize(11);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('RESUMO FINANCEIRO', col2 + 5, yPosition + 10);
-                
-                pdf.setFillColor(colors.bgBody); // MODIFICADO
-                pdf.setDrawColor(colors.border); // MODIFICADO
-                pdf.roundedRect(col2, yPosition + 15, boxWidth, 30, 3, 3, 'DF'); // MODIFICADO
-                
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                pdf.setFontSize(10);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text(`Saldo Remanescente:`, col2 + 5, yPosition + 25);
-                pdf.setTextColor(colors.textAccent); // MODIFICADO
-                pdf.setFontSize(12);
-                pdf.text(`${data.saldoRemanescente}`, col2 + 5, yPosition + 35);
-
-                yPosition += 45;
-
-                // Bloco 6: Observações (largura total)
-                pdf.setFillColor(colors.bgHeader); // MODIFICADO
-                pdf.roundedRect(margin, yPosition, 180, 15, 3, 3, 'F');
-                
-                pdf.setTextColor(colors.textHeader); // MODIFICADO
-                pdf.setFontSize(11);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('OBSERVAÇÕES', margin + 5, yPosition + 10);
-                
-                pdf.setFillColor(colors.bgHighlight); // MODIFICADO
-                pdf.setDrawColor(colors.border); // MODIFICADO
-                pdf.roundedRect(margin, yPosition + 15, 180, 40, 3, 3, 'DF'); // MODIFICADO
-                
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                pdf.setFontSize(9);
-                pdf.setFont('helvetica', 'normal');
-                const observacoes = data.observacoesSimulacao || 'Nenhuma observação adicionada.';
-                const observacoesLines = pdf.splitTextToSize(observacoes, 170);
-                pdf.text(observacoesLines, margin + 5, yPosition + 25);
-
-                yPosition += 65;
-
-                // NOVO: Linha de Data (Alteração anterior mantida)
-                pdf.setTextColor(colors.textBody); // MODIFICADO
-                pdf.setFontSize(10);
-                pdf.setFont('helvetica', 'normal');
-                // Centraliza a nova linha de data
-                pdf.text('Maceió, ________de____________de___________.', 105, yPosition + 10, { align: 'center' });
-                yPosition += 20; // Avança a posição para o final
-
-                // Nome do arquivo
-                const nomeArquivoBase = nomeEmpreendimentoInput.value.trim().replace(/\s+/g, '_') || 'Simulacao';
-                const nomeClienteBase = nomeClienteInput.value.trim().replace(/\s+/g, '_') || 'Cliente';
-                const nomeArquivo = `${nomeArquivoBase}_${nomeClienteBase}.pdf`;
-                
-                pdf.save(nomeArquivo);
-                showToast('PDF da simulação baixado com sucesso!', 'success');
-                
-            } catch (error) {
-                console.error("Erro ao gerar PDF da simulação:", error);
-                showToast('Erro ao gerar PDF da simulação. Tente novamente mais tarde.', 'danger');
             }
         }
 
@@ -2908,9 +2709,9 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             let valorParcelaSemINCC = parcelasEntrada > 0 ? maximoConstrParc / parcelasEntrada : 0;
             let valorParcelaEntradaInicialCalc = valorParcelaSemINCC;
 
-            // CORREÇÃO DO INCC: Aplica a correção do INCC ao valor da primeira parcela
             if (correcaoINCC > 0 && parcelasEntrada > 0 && maximoConstrParc > 0) {
-                valorParcelaEntradaInicialCalc = valorParcelaSemINCC * (1 + correcaoINCC / 100);
+                const correcaoMensalSobreParcelaBase = valorParcelaSemINCC * (correcaoINCC / 100);
+                valorParcelaEntradaInicialCalc = valorParcelaSemINCC + correcaoMensalSobreParcelaBase;
             } else if (maximoConstrParc === 0 && parcelasEntrada > 0) {
                 valorParcelaEntradaInicialCalc = 0;
             }
@@ -3059,26 +2860,26 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                              // Adicionar propriedades 'observacoes', 'descontoMCMV', 'valorFinanciado', 'valorFGTS' a leads antigos, se não existirem (para compatibilidade)
                              const leadsToImport = importedData.listaLeads.map(lead => {
                                  if (!lead.hasOwnProperty('observacoes')) {
-                                     lead.observacoes = 'Sem observações.';
+                                     lead.observacoes = 'Sem observações.'; // Define um valor padrão
                                  }
                                  if (!lead.hasOwnProperty('descontoMCMV')) {
-                                     lead.descontoMCMV = 0;
+                                     lead.descontoMCMV = 0; // Define um valor padrão
                                  }
                                   if (!lead.hasOwnProperty('valorFinanciado')) {
-                                     lead.valorFinanciado = 0;
+                                     lead.valorFinanciado = 0; // Define um valor padrão
                                   }
                                    if (!lead.hasOwnProperty('valorFGTS')) {
-                                      lead.valorFGTS = 0;
+                                      lead.valorFGTS = 0; // Define um valor padrão
                                   }
                                  return lead;
                              });
-                            localStorage.setItem('listaLeads', JSON.stringify(leadsToImport));
+                            localStorage.setItem('listaLeads', JSON.stringify(leadsToImport)); // Salva com os leads compatíveis
                             leadsImported = true;
                             console.log('Leads importados (compatibilidade aplicada).');
                             if (secaoListaLeads.style.display !== 'none') {
                                 carregarLeadsNaTabela();
                             }
-                            updateLeadCountDisplay();
+                            updateLeadCountDisplay(); // Atualiza a contagem após importar leads
                         } else {
                              console.log('Dados de leads inválidos ou não encontrados no backup.');
                         }
@@ -3134,6 +2935,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                     const importedLeads = JSON.parse(e.target.result);
 
                     // Validação aprimorada: Verifica se é um array e se cada item é um objeto com propriedades básicas de lead
+                    // As propriedades "nome" e "telefone" são consideradas essenciais para um registro de lead.
                     if (!Array.isArray(importedLeads) || !importedLeads.every(lead => typeof lead === 'object' && lead !== null && lead.nome && lead.telefone)) {
                         showToast('Arquivo de leads inválido ou formato incorreto. Esperado um array de objetos de lead.', 'danger');
                         importLeadsFileInput.value = '';
@@ -3147,6 +2949,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
 
                         importedLeads.forEach(importedLead => {
                             // Garante a compatibilidade com leads antigos que podem não ter esses campos
+                            // Define um valor padrão se a propriedade não existir no lead importado.
                             importedLead.observacoes = importedLead.observacoes || 'Sem observações.';
                             importedLead.descontoMCMV = importedLead.descontoMCMV || 0;
                             importedLead.valorFinanciado = importedLead.valorFinanciado || 0;
@@ -3187,7 +2990,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                     console.error("Erro ao processar o arquivo de leads:", error);
                     showToast('Erro ao processar o arquivo de leads. Verifique o formato.', 'danger');
                 } finally {
-                    importLeadsFileInput.value = '';
+                    importLeadsFileInput.value = ''; // Limpa o input file para permitir novas seleções
                 }
             };
             reader.onerror = function() {
@@ -3248,7 +3051,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                             // Garante que todas as propriedades esperadas existam com valores padrão se não vierem do CSV
                             const leadToSave = {
                                 nome: importedLead.nome,
-                                telefone: formatPhoneNumberForOutput(importedLead.telefone),
+                                telefone: formatPhoneNumberForOutput(importedLead.telefone), // Formata o telefone para exibição
                                 imovel: importedLead.imovel || 'Não Informado',
                                 notas: importedLead.notas || 'Sem notas adicionadas.',
                                 observacoes: importedLead.observacoes || 'Sem observações.',
@@ -3276,7 +3079,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                         let successMessage = `Importação CSV concluída! ${newLeadsAdded} novos leads adicionados, ${leadsUpdated} leads atualizados.`;
                         if (leadsIgnored > 0) {
                             successMessage += ` (${leadsIgnored} leads ignorados por dados incompletos)`;
-                            showToast(successMessage, 'warning', 10000);
+                            showToast(successMessage, 'warning', 10000); // Mostra aviso por mais tempo
                         } else {
                             showToast(successMessage, 'success', 7000);
                         }
@@ -3287,7 +3090,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                     console.error("Erro ao processar o arquivo CSV:", error);
                     showToast('Erro ao processar o arquivo CSV. Verifique o formato ou a codificação (UTF-8).', 'danger');
                 } finally {
-                    importLeadsCSVFileInput.value = '';
+                    importLeadsCSVFileInput.value = ''; // Limpa o input file para permitir novas seleções
                 }
             };
             reader.onerror = function() {
@@ -3295,7 +3098,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 showToast('Erro ao ler o arquivo CSV.', 'danger');
                 importLeadsCSVFileInput.value = '';
             };
-            reader.readAsText(file);
+            reader.readAsText(file); // Leitura como texto (UTF-8 é o padrão)
         }
 
         // Função para parsear CSV (simples, separador por ponto e vírgula)
@@ -3303,7 +3106,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             const lines = csvString.split('\n').filter(line => line.trim() !== '');
             if (lines.length === 0) return [];
 
-            const headers = lines[0].split(';').map(h => h.trim().replace(/["\s]/g, ''));
+            const headers = lines[0].split(';').map(h => h.trim().replace(/["\s]/g, '')); // Remove aspas duplas e espaços em branco
             const leads = [];
 
             // Mapeamento de cabeçalhos do CSV para chaves internas do objeto lead
@@ -3324,17 +3127,17 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 const values = lines[i].split(';');
                 if (values.length !== headers.length) {
                     console.warn(`Linha CSV ignorada devido a número inconsistente de colunas: "${lines[i]}"`);
-                    continue;
+                    continue; // Pula linhas malformadas
                 }
 
                 const lead = {};
                 headers.forEach((header, index) => {
-                    const key = headerMap[header];
+                    const key = headerMap[header]; // Mapeia o cabeçalho do CSV para a chave interna
                     if (key) {
-                        let value = values[index].trim().replace(/^"|"$/g, '');
+                        let value = values[index].trim().replace(/^"|"$/g, ''); // Remove aspas duplas das pontas
                         // Tenta converter valores numéricos
                         if (['descontoMCMV', 'valorFinanciado', 'valorFGTS'].includes(key)) {
-                            value = cleanCurrencyFormat(value);
+                            value = cleanCurrencyFormat(value); // Usa a função de limpeza de moeda
                         }
                         lead[key] = value;
                     }
@@ -3408,7 +3211,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                                          </td>`;
                 });
             }
-             updateLeadCountDisplay();
+             updateLeadCountDisplay(); // Atualiza a contagem sempre que a tabela é carregada
         }
 
         window.confirmDeleteLead = function(leadDataISO, leadNomeEncodado) {
@@ -3436,7 +3239,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                   // Reabrir o modal de histórico se ele estava aberto antes
                   if (historyModalWasOpen) {
                      historyModal.classList.add('show');
-                     historyModalWasOpen = false;
+                     historyModalWasOpen = false; // Resetar flag
                   }
              };
              const cancelAction = () => {
@@ -3447,7 +3250,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                  // Reabrir o modal de histórico se ele estava aberto antes
                   if (historyModalWasOpen) {
                      historyModal.classList.add('show');
-                     historyModalWasOpen = false;
+                     historyModalWasOpen = false; // Resetar flag
                   }
              };
              // Flag para saber se o modal de histórico estava aberto
@@ -3463,7 +3266,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             let todosLeads = JSON.parse(localStorage.getItem('listaLeads')) || [];
             todosLeads = todosLeads.filter(lead => lead.dataISO !== leadDataISO);
             localStorage.setItem('listaLeads', JSON.stringify(todosLeads));
-            carregarLeadsNaTabela();
+            carregarLeadsNaTabela(); // Recarrega a tabela e atualiza a contagem
             showToast('Lead excluído.', 'danger');
         }
 
@@ -3498,7 +3301,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             const existingLeadIndex = leads.findIndex(lead =>
                  lead.nome.toLowerCase() === nomeClienteVal.toLowerCase() &&
                  getCleanPhoneNumberDigits(lead.telefone) === telefoneLimpoParaComparacao &&
-                 (nomeClienteVal !== '' || telefoneLimpoParaComparacao !== '')
+                 (nomeClienteVal !== '' || telefoneLimpoParaComparacao !== '') // Só compara se houver nome ou telefone preenchido no input
             );
             if (existingLeadIndex > -1) {
                 // Se um lead existente foi encontrado, atualiza as informações
@@ -3513,15 +3316,20 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 leads[existingLeadIndex].valorIntercaladas = valorIntercaladasVal;
                 leads[existingLeadIndex].quantidadeIntercaladas = quantidadeIntercaladasVal;
                 // -------------------------------------------------
-                console.log(`Lead existente atualizado para: ${nomeClienteVal || 'Não Informado'}`);
+                console.log(`Lead existente atualizado para: ${nomeClienteVal}`);
             } else {
                  // Verifica se há dados suficientes para salvar um novo lead
+                 // Mantenha esta verificação se quiser que só salve um lead novo
+                 // caso pelo menos um dos campos principais ou novos campos tenham valor.
+                 // Ajuste a condição conforme sua necessidade.
                  if (!nomeClienteVal && !telefoneClienteOriginal && !nomeEmpreendimentoVal && !notasClienteVal && !observacoesSimulacaoVal && descontoMCMVVal === 0 && valorFinanciadoVal === 0 && valorFGTSVal === 0 && valorIntercaladasVal === 0 && quantidadeIntercaladasVal === 0) {
                      console.warn("Nenhum dado suficiente para salvar um novo lead.");
                      return;
                  }
                 // Se nenhum lead existente foi encontrado, adiciona um novo
                 const novoLead = {
+                    // Gere um ID único para novos leads, se necessário para outras operações (ex: notas)
+                    // id: Date.now(), // Opcional: Adicionar um ID único
                     nome: nomeClienteVal || 'Não Informado',
                     telefone: telefoneClienteFormatado,
                     imovel: nomeEmpreendimentoVal || 'Não Informado',
@@ -3537,40 +3345,42 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                     quantidadeIntercaladas: quantidadeIntercaladasVal
                     // -------------------------------------------
                 };
-                // Verifica a duplicidade recente APENAS para novos leads antes de adicionar
+                // Verifica a duplicidade recente APENAS para novos leads antes de adicionar (mantém a lógica anterior)
+                 // Ajuste esta lógica se a inclusão dos novos campos impactar a definição de "duplicado"
                  const leadRecenteDuplicado = leads.find(lead =>
                      lead.nome === novoLead.nome &&
-                     getCleanPhoneNumberDigits(lead.telefone) === getCleanPhoneNumberDigits(novoLead.telefone) &&
+                     getCleanPhoneNumberDigits(lead.telefone) === getCleanPhoneNumberDigits(novoLead.telefone) && // Compara telefones limpos
                      lead.imovel === novoLead.imovel &&
                      lead.notas === novoLead.notas &&
                      lead.observacoes === novoLead.observacoes &&
-                      lead.descontoMCMV === novoLead.descontoMCMV &&
+                      lead.descontoMCMV === novoLead.descontoMCMV && // Inclui os novos campos na verificação
                       lead.valorFinanciado === novoLead.valorFinanciado &&
                       lead.valorFGTS === novoLead.valorFGTS &&
                       lead.valorIntercaladas === novoLead.valorIntercaladas &&
                       lead.quantidadeIntercaladas === novoLead.quantidadeIntercaladas &&
-                     (new Date() - new Date(lead.dataISO)) < (10 * 1000)
+                     (new Date() - new Date(lead.dataISO)) < (10 * 1000) // Considera duplicado se salvo nos últimos 10 segundos
                  );
                  if (leadRecenteDuplicado) {
-                    return;
+                    // console.log("Lead recente duplicado não salvo (prevenção de clique rápido).");
+                    return; // Sai da função se for um clique rápido duplicado
                  }
 
                 leads.push(novoLead);
-                console.log(`Novo lead salvo para: ${nomeClienteVal || 'Não Informado'}`);
+                console.log(`Novo lead salvo para: ${nomeClienteVal}`);
                 // *** CHAMA A NOVA FUNÇÃO DE EFEITO DE FESTA ***
-                triggerPartyEffect();
+                triggerPartyEffect(); // Chama a função do efeito apenas para NOVOS leads
                 // *******************************************
             }
 
             localStorage.setItem('listaLeads', JSON.stringify(leads));
-             updateLeadCountDisplay();
+             updateLeadCountDisplay(); // Atualiza a contagem ao salvar um lead
             if (secaoListaLeads.style.display !== 'none') {
-                carregarLeadsNaTabela();
+                carregarLeadsNaTabela(); // Atualiza a tabela se a seção de leads estiver visível
             }
         }
 
         // --- FUNÇÃO PARA ACIONAR O EFEITO DE FESTA ---
-        let partyEffectTimeout;
+        let partyEffectTimeout; // Variável para armazenar o ID do timeout
 
         function triggerPartyEffect() {
             if (!partyEffectContainer) {
@@ -3588,20 +3398,20 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             partyEffectContainer.classList.add('show');
 
             // Gera e adiciona os elementos de festa
-            generatePartyElements(50, 100);
+            generatePartyElements(50, 100); // 50 balões, 100 confetes
 
             // Define um novo timeout para remover o efeito após 10 segundos
             partyEffectTimeout = setTimeout(() => {
                 partyEffectContainer.classList.remove('show');
                 // Limpa os elementos após o efeito terminar
-                setTimeout(clearPartyElements, 500);
-            }, 10000);
+                setTimeout(clearPartyElements, 500); // Um pequeno delay para a transição de opacidade
+            }, 10000); // 10000 milissegundos = 10 segundos
         }
 
         // Função para gerar e adicionar balões e confetes
         function generatePartyElements(numBalloons, numConfetti) {
-            const colors = ['#ff7e5f', '#feb47b', '#ffb347', '#ffcc33', '#ffff33', '#a7cf4f', '#7acb91', '#56b870', '#29a84a', '#008080', '#0000ff', '#4b0082', '#9400d3', '#ff00ff'];
-            const confettiColors = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#fff'];
+            const colors = ['#ff7e5f', '#feb47b', '#ffb347', '#ffcc33', '#ffff33', '#a7cf4f', '#7acb91', '#56b870', '#29a84a', '#008080', '#0000ff', '#4b0082', '#9400d3', '#ff00ff']; // Cores variadas
+            const confettiColors = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#fff']; // Cores para confetes
 
             // Gera Balões
             for (let i = 0; i < numBalloons; i++) {
@@ -3609,9 +3419,9 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 balloon.classList.add('balloon');
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 balloon.style.backgroundColor = randomColor;
-                balloon.style.left = `${Math.random() * 100}vw`;
-                balloon.style.animationDuration = `${10 + Math.random() * 5}s`;
-                balloon.style.animationDelay = `${Math.random() * 2}s`;
+                balloon.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
+                balloon.style.animationDuration = `${10 + Math.random() * 5}s`; // Duração da animação aleatória
+                balloon.style.animationDelay = `${Math.random() * 2}s`; // Delay para animação aleatória
                 partyEffectContainer.appendChild(balloon);
             }
 
@@ -3621,20 +3431,21 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 confetti.classList.add('confetti');
                 const randomColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
                 confetti.style.backgroundColor = randomColor;
-                confetti.style.left = `${Math.random() * 100}vw`;
-                confetti.style.top = `${Math.random() * -20}vh`;
-                 const randomSize = Math.random() * 10 + 5;
+                confetti.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
+                confetti.style.top = `${Math.random() * -20}vh`; // Começa acima ou na parte superior
+                 const randomSize = Math.random() * 10 + 5; // Tamanho aleatório entre 5px e 15px
                  confetti.style.width = `${randomSize}px`;
-                 confetti.style.height = `${randomSize * (0.8 + Math.random()*0.4)}px`;
-                confetti.style.animationDuration = `${6 + Math.random() * 4}s`;
-                confetti.style.animationDelay = `${Math.random() * 3}s`;
-                 confetti.style.opacity = `${0.5 + Math.random() * 0.5}`;
+                 confetti.style.height = `${randomSize * (0.8 + Math.random()*0.4)}px`; // Altura um pouco variada
+                confetti.style.animationDuration = `${6 + Math.random() * 4}s`; // Duração da animação aleatória
+                confetti.style.animationDelay = `${Math.random() * 3}s`; // Delay para animação aleatória
+                 confetti.style.opacity = `${0.5 + Math.random() * 0.5}`; // Opacidade aleatória
                 partyEffectContainer.appendChild(confetti);
             }
         }
 
         // Função para remover balões e confetes do contêiner
         function clearPartyElements() {
+            // Mantém o #partyMessage, remove apenas os elementos gerados dinamicamente
             const elementsToRemove = partyEffectContainer.querySelectorAll('.balloon, .confetti');
             elementsToRemove.forEach(element => element.remove());
         }
@@ -3697,7 +3508,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             if (isHidden) {
                 if (icon) icon.classList.replace('fa-clipboard', 'fa-clipboard-list');
                 if (btnTextSpan) btnTextSpan.textContent = ' Fechar Notas Restritas';
-                 loadNoteForCurrentClient();
+                 loadNoteForCurrentClient(); // Tenta carregar a nota ao abrir
             } else {
                 if (icon) icon.classList.replace('fa-clipboard-list', 'fa-clipboard');
                 if (btnTextSpan) btnTextSpan.textContent = ' Notas Restritas';
@@ -3741,7 +3552,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             const existingNoteIndex = savedNotes.findIndex(n =>
                  n.nome.toLowerCase() === nomeCliente.toLowerCase() &&
                  getCleanPhoneNumberDigits(n.telefone) === telefoneLimpoParaComparacao &&
-                 (nomeCliente !== '' || telefoneLimpoParaComparacao !== '')
+                 (nomeCliente !== '' || telefoneLimpoParaComparacao !== '') // Só compara se houver nome ou telefone preenchido
             );
             if(existingNoteIndex > -1) {
                  // Atualiza a nota existente
@@ -3751,7 +3562,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             } else {
                  // Se não encontrou nota existente, cria uma nova (mesmo que o lead já exista, a nota é um histórico separado)
                   const note = {
-                     id: Date.now(),
+                     id: Date.now(), // Novo ID para a nota histórica
                      nome: nomeCliente || 'Cliente Não Informado',
                      telefone: telefoneClienteFormatado,
                      notas: notasContent || 'Sem notas adicionadas.',
@@ -3764,7 +3575,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             localStorage.setItem('clientNotes', JSON.stringify(savedNotes));
             showToast('Nota salva com sucesso!', 'success');
             if (historyModal.classList.contains('show')) {
-                loadHistoryNotes();
+                loadHistoryNotes(); // Recarrega o histórico se estiver aberto
             }
              // Recarrega a nota para o cliente atual (garante que a nota atualizada está na tela)
              loadNoteForCurrentClient();
@@ -3835,7 +3646,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                  nomeClienteInput.value = noteToLoad.nome === 'Cliente Não Informado' ? '' : noteToLoad.nome;
                  telefoneClienteInput.value = noteToLoad.telefone.replace(/\D/g, '');
                  formatInputAsPhone({ target: telefoneClienteInput });
-                 notasClienteTextArea.value = noteToLoad.notas === 'Sem notas adicionadas.' ? '' : noteToLoad.notas;
+                 notasClienteTextArea.value = noteToLoad.notas === 'Sem notas adicionadas.' ? '' : noteToLoad.notas; // Corrigido aqui
                  showToast('Nota carregada para o formulário.', 'info');
                  const historyModalElement = document.getElementById('historyModal');
                  if(historyModalElement) historyModalElement.classList.remove('show');
@@ -3972,7 +3783,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 }
 
                 secaoListaLeads.style.display = 'block';
-                carregarLeadsNaTabela();
+                carregarLeadsNaTabela(); // Garante que a tabela e a contagem estejam atualizadas ao abrir
                 window.scrollTo({ top: secaoListaLeads.offsetTop - 20, behavior: 'smooth' });
             });
         }
@@ -3982,7 +3793,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 secaoListaLeads.style.display = 'none';
                 if (simuladorCardElement) simuladorCardElement.style.display = 'block';
                  loadNoteForCurrentClient();
-                 updateLeadCountDisplay();
+                 updateLeadCountDisplay(); // Atualiza a contagem ao voltar para o simulador
                  window.scrollTo({ top: simuladorCardElement.offsetTop - 20, behavior: 'smooth' });
             });
         }
@@ -3996,7 +3807,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 }
                 leads.sort((a, b) => new Date(b.dataISO) - new Date(a.dataISO));
                 // Adicionado "Subsídio", "Financiado", "FGTS" ao cabeçalho do CSV
-                let csvContent = "Nome;Telefone;Imovel;Data Salvo;Subsidio;Financiado;FGTS;Notas;Observacoes\n";
+                let csvContent = "Nome;Telefone;Imovel;Data Salvo;Subsidio;Financiado;FGTS;Notas;Observacoes\n"; // <-- Cabeçalho CSV atualizado
                 leads.forEach(lead => {
                     // Certifica-se de que as novas propriedades existem para leads antigos, se necessário
                     const descontoMCMVValue = lead.descontoMCMV || 0;
@@ -4005,7 +3816,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
 
                     // Inclui as notas, observações e os novos campos na linha do CSV
                     const observacoesLead = lead.observacoes || 'Sem observações.';
-                    const row = [`"${encodeHTML(lead.nome).replace(/"/g, '""')}"`, `"${encodeHTML(lead.telefone).replace(/"/g, '""')}"`, `"${encodeHTML(lead.imovel).replace(/"/g, '""')}"`, `"${lead.dataSalvo}"`, `${descontoMCMVValue}`, `${valorFinanciadoValue}`, `${valorFGTSValue}`, `"${encodeHTML(lead.notas || '').replace(/"/g, '""')}"`, `"${encodeHTML(observacoesLead).replace(/"/g, '""')}"`].join(";");
+                    const row = [`"${encodeHTML(lead.nome).replace(/"/g, '""')}"`, `"${encodeHTML(lead.telefone).replace(/"/g, '""')}"`, `"${encodeHTML(lead.imovel).replace(/"/g, '""')}"`, `"${lead.dataSalvo}"`, `${descontoMCMVValue}`, `${valorFinanciadoValue}`, `${valorFGTSValue}`, `"${encodeHTML(lead.notas || '').replace(/"/g, '""')}"`, `"${encodeHTML(observacoesLead).replace(/"/g, '""')}"`].join(";"); // <-- Adicionado os novos campos aqui
                     csvContent += row + "\n";
                 });
                 const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -4026,14 +3837,14 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
         if (baixarSimulacaoAtualBtn) {
             baixarSimulacaoAtualBtn.addEventListener('click', () => {
                 baixarSimulacaoComoTXT();
-                salvarLead();
+                salvarLead(); // Salva o lead ao baixar TXT (com a nova lógica de atualização/adição)
             });
         }
 
         if (enviarWhatsappBtn) {
             enviarWhatsappBtn.addEventListener('click', () => {
-                salvarLead();
-                enviarSimulacaoPorWhatsApp();
+                salvarLead(); // Salva o lead antes de enviar pelo WhatsApp (com a nova lógica de atualização/adição)
+                enviarSimulacaoPorWhatsApp(); // Chama a função de envio
             });
         }
 
@@ -4052,7 +3863,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
         if (btnDocumentos) {
             btnDocumentos.addEventListener('click', () => {
                 if (documentsModal) {
-                    loadPdfHeaderInfo();
+                    loadPdfHeaderInfo(); // Carrega as informações ao abrir o modal
                     documentsModal.classList.add('show');
                 } else {
                     console.error('Erro: Elemento modal #documentsModal não encontrado!');
@@ -4069,35 +3880,35 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
         if (baixarDocumentosPdfBtn) {
             baixarDocumentosPdfBtn.addEventListener('click', baixarDocumentosComoPdf);
         }
+        // --- Fim do Event Listener para o NOVO botão "Baixar PDF" ---
 
         // --- Event Listeners para o botão de Importar Leads JSON ---
         if (btnImportarLeads) {
             btnImportarLeads.addEventListener('click', () => {
+                // Dispara o clique no input de arquivo escondido
                 importLeadsFileInput.click();
             });
         }
         if (importLeadsFileInput) {
             importLeadsFileInput.addEventListener('change', processImportLeadsFile);
         }
+        // --- FIM Event Listeners para o botão de Importar Leads JSON ---
 
         // --- NOVO: Event Listeners para o botão de Importar Leads CSV ---
         if (btnImportarLeadsCSV) {
             btnImportarLeadsCSV.addEventListener('click', () => {
+                // Dispara o clique no input de arquivo CSV escondido
                 importLeadsCSVFileInput.click();
             });
         }
         if (importLeadsCSVFileInput) {
             importLeadsCSVFileInput.addEventListener('change', processImportLeadsCSVFile);
         }
+        // --- FIM NOVO: Event Listeners para o botão de Importar Leads CSV ---
 
         // --- Event Listener para o NOVO botão "Baixar TXT" dentro do modal de documentos ---
         if (baixarDocumentosTxtBtn) {
             baixarDocumentosTxtBtn.addEventListener('click', baixarDocumentosComoTxt);
-        }
-
-        // --- Event Listener para o NOVO botão "Baixar PDF" da simulação ---
-        if (btnBaixarSimulacaoPdf) {
-            btnBaixarSimulacaoPdf.addEventListener('click', baixarSimulacaoComoPdf);
         }
 
     </script>
