@@ -2556,19 +2556,19 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 const lineHeight = 6;
                 const sectionSpacing = 12;
                 
-                // Paleta de cores elegante
+                // Paleta de cores elegante (MODIFICADA - Padrão FunilProResende)
                 const colors = {
-                    primary: '#2c3e50',
-                    secondary: '#3498db',
-                    accent: '#e74c3c',
-                    success: '#27ae60',
-                    warning: '#e67e22',
-                    light: '#ecf0f1',
-                    dark: '#34495e'
+                    primary: '#4A574A',   // Verde Escuro (do Funil)
+                    secondary: '#606C60', // Verde Cinza Médio (do Funil)
+                    accent: '#D32F2F',    // Vermelho (do Funil, mapeado do 'danger-color')
+                    success: '#4CAF50',   // Verde Sucesso (do Funil)
+                    warning: '#FFC107',   // Amarelo (do Funil)
+                    light: '#F4F2EE',    // Off-white (do Funil, mapeado do 'bg-color')
+                    dark: '#333333'     // Cinza Escuro (do Funil, mapeado do 'text-color')
                 };
                 
                 // Cabeçalho
-                pdf.setFillColor(44, 62, 80);
+                pdf.setFillColor(74, 87, 74);
                 pdf.rect(0, 0, 210, 25, 'F');
                 
                 pdf.setTextColor(255, 255, 255);
@@ -2581,7 +2581,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.setTextColor(0, 0, 0);
                 
                 // Informações do Cliente - Bloco 1
-                pdf.setFillColor(236, 240, 241);
+                pdf.setFillColor(244, 242, 238);
                 pdf.roundedRect(margin, yPosition, 180, 30, 3, 3, 'F');
                 
                 pdf.setFontSize(14);
@@ -2605,7 +2605,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 const boxHeight = 45;
 
                 // Bloco 2: Valores do Imóvel
-                pdf.setFillColor(52, 152, 219);
+                pdf.setFillColor(96, 108, 96);
                 pdf.roundedRect(col1, yPosition, boxWidth, 15, 3, 3, 'F');
                 
                 pdf.setTextColor(255, 255, 255);
@@ -2613,7 +2613,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('VALORES DO IMÓVEL', col1 + 5, yPosition + 10);
                 
-                pdf.setFillColor(241, 248, 254);
+                pdf.setFillColor(239, 240, 239);
                 pdf.roundedRect(col1, yPosition + 15, boxWidth, boxHeight, 3, 3, 'F');
                 
                 pdf.setTextColor(colors.dark);
@@ -2631,7 +2631,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.text(`Financiado: ${data.valorFinanciado}`, col1 + 5, textY);
 
                 // Bloco 3: Entrada
-            pdf.setFillColor(231, 76, 60);
+            pdf.setFillColor(211, 47, 47);
             pdf.roundedRect(col2, yPosition, boxWidth, 15, 3, 3, 'F');
 
             pdf.setTextColor(255, 255, 255);
@@ -2639,7 +2639,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
             pdf.setFont('helvetica', 'bold');
             pdf.text('ENTRADA', col2 + 5, yPosition + 10);
 
-            pdf.setFillColor(254, 242, 242);
+            pdf.setFillColor(253, 231, 231);
             pdf.roundedRect(col2, yPosition + 15, boxWidth, 57, 3, 3, 'F');
                 
                 pdf.setTextColor(colors.dark);
@@ -2669,7 +2669,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 yPosition += 57 + 20;
 
                 // Bloco 4: Intercaladas
-                pdf.setFillColor(39, 174, 96);
+                pdf.setFillColor(76, 175, 80);
                 pdf.roundedRect(col1, yPosition, boxWidth, 15, 3, 3, 'F');
                 
                 pdf.setTextColor(255, 255, 255);
@@ -2691,7 +2691,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.text(`Total: ${data.totalIntercaladas}`, col1 + 5, textY);
 
                 // Bloco 5: Resumo Financeiro
-                pdf.setFillColor(230, 126, 34);
+                pdf.setFillColor(255, 193, 7);
                 pdf.roundedRect(col2, yPosition, boxWidth, 15, 3, 3, 'F');
                 
                 pdf.setTextColor(255, 255, 255);
@@ -2699,7 +2699,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('RESUMO FINANCEIRO', col2 + 5, yPosition + 10);
                 
-                pdf.setFillColor(255, 243, 224);
+                pdf.setFillColor(255, 249, 229);
                 pdf.roundedRect(col2, yPosition + 15, boxWidth, 30, 3, 3, 'F');
                 
                 pdf.setTextColor(colors.dark);
@@ -2713,7 +2713,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 yPosition += 45;
 
                 // Bloco 6: Observações (largura total)
-                pdf.setFillColor(149, 165, 166);
+                pdf.setFillColor(96, 108, 96);
                 pdf.roundedRect(margin, yPosition, 180, 15, 3, 3, 'F');
                 
                 pdf.setTextColor(255, 255, 255);
@@ -2721,7 +2721,7 @@ O valor das parcelas de entrada é corrigido mensalmente pelo INCC
                 pdf.setFont('helvetica', 'bold');
                 pdf.text('OBSERVAÇÕES', margin + 5, yPosition + 10);
                 
-                pdf.setFillColor(248, 249, 250);
+                pdf.setFillColor(244, 242, 238);
                 pdf.roundedRect(margin, yPosition + 15, 180, 40, 3, 3, 'F');
                 
                 pdf.setTextColor(colors.dark);
